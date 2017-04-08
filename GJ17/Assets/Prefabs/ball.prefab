@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212138735047008668}
   - component: {fileID: 114919514247835566}
   - component: {fileID: 50483108597787216}
-  - component: {fileID: 58343848819160402}
   - component: {fileID: 61665605214073096}
-  m_Layer: 0
+  - component: {fileID: 58675849647184066}
+  m_Layer: 9
   m_Name: ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1091589249250934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.10893521, y: 0.90778995, z: 0}
+  m_LocalPosition: {x: -1.07, y: 8.1, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,21 +64,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58343848819160402
+--- !u!58 &58675849647184066
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1091589249250934}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9ac83594108c5447ab1d2ced0e3cbc95, type: 2}
-  m_IsTrigger: 0
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 10
 --- !u!61 &61665605214073096
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -115,6 +115,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0cba6183aad458398fd14db679c226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StickinessSphere: {fileID: 58675849647184066}
+  StickinessSpeed: 20
+  StickinessFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 512
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!212 &212138735047008668
 SpriteRenderer:
   m_ObjectHideFlags: 1
