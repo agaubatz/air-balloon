@@ -45,6 +45,11 @@ public class Ball : MonoBehaviour {
       attachmentDiff.y = 0; attachmentDiff.z = 0;
       transform.position -= attachmentDiff * AttachmentCompensation;
       _lastAttachmentPosition = _attached.position;
+
+      if(transform.position.y + 10 < _attached.position.y) {
+        transform.parent = null;
+        _attached = null;
+      }
      }
 	}
 
