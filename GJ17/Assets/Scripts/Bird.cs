@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour {
   private Vector3 mousePosition;
-  public float moveSpeed = 40f;
+  private float moveSpeed = 0.3f;
   public Ball ball;
 
 	// Use this for initialization

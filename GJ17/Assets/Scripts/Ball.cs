@@ -23,6 +23,6 @@ public class Ball : MonoBehaviour {
   public void DroppedByBird(Vector2 velocity) {
     rb.isKinematic = false;
     Debug.Log("Dropped " + velocity);
-    rb.AddForce(velocity*30, ForceMode2D.Impulse);
+    rb.AddForce(velocity*2.5f, ForceMode2D.Impulse);
   }
 }
