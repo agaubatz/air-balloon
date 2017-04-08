@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 	private float RotationCorrectionSpeed = 10f;
 	public LayerMask CollisionMask;
 
+	private Bounds _bounds;
 	private BoxCollider2D _boxCollider;
 
 	private const int _maxCollisionAttempts = 10;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_boxCollider = GetComponent<BoxCollider2D>();
+		_bounds = _boxCollider.bounds;
 		DefaultVelocity = new Vector3(0, VerticalMovementSpeed, 0);
 	}
 	
@@ -51,7 +53,7 @@ public class Player : MonoBehaviour {
 		Vector3 newPos = transform.position + amount;
 		Vector2 newPos2D = Util.Make2D(newPos + Vector3.Scale(new Vector3(_boxCollider.offset.x, _boxCollider.offset.y, 0), transform.lossyScale));
 
-		if (!Physics2D.OverlapArea(newPos2D - Util.Make2D(_boxCollider.bounds.extents), newPos2D + Util.Make2D(_boxCollider.bounds.extents), CollisionMask))
+		if (!Physics2D.OverlapArea(newPos2D - Util.Make2D(_bounds.extents), newPos2D + Util.Make2D(_bounds.extents), CollisionMask))
 		{
 			transform.position = newPos;
 		}
