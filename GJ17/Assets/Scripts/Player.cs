@@ -9,11 +9,13 @@ public class Player : MonoBehaviour {
 	private float RotationAmount = 10f;
 	public LayerMask CollisionMask;
 
-	private PolygonCollider2D _collider;
+	private BoxCollider2D _boxCollider;
+
+	private const int _maxCollisionAttempts = 10;
 
 	// Use this for initialization
 	void Start () {
-		_collider = GetComponent<PolygonCollider2D>();
+		_boxCollider = GetComponent<BoxCollider2D>();
 		DefaultVelocity = new Vector3(0, VerticalMovementSpeed, 0);
 	}
 	
@@ -37,14 +39,22 @@ public class Player : MonoBehaviour {
 		TryToMove(DefaultVelocity * Time.deltaTime);
 	}
 
-	public void TryToMove(Vector3 amount)
+	public void TryToMove(Vector3 amount, int attempts = 0)
 	{
+		if (attempts >= _maxCollisionAttempts)
+			return;
+
 		Vector3 newPos = transform.position + amount;
-		Vector2 newPos2D = Util.Make2D(newPos);
-		
-		if (!Physics2D.OverlapArea(newPos2D - Util.Make2D(_collider.bounds.extents), newPos2D + Util.Make2D(_collider.bounds.extents), CollisionMask))
+		Vector2 newPos2D = Util.Make2D(newPos + Vector3.Scale(new Vector3(_boxCollider.offset.x, _boxCollider.offset.y, 0), transform.lossyScale));
+
+		if (!Physics2D.OverlapArea(newPos2D - Util.Make2D(_boxCollider.bounds.extents), newPos2D + Util.Make2D(_boxCollider.bounds.extents), CollisionMask))
 		{
 			transform.position = newPos;
+		}
+		else
+		{
+			attempts++;
+			TryToMove(amount - (amount / _maxCollisionAttempts) * attempts, attempts);
 		}
 	}
 }
