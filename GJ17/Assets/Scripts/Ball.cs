@@ -6,12 +6,16 @@ public class Ball : MonoBehaviour {
   public CircleCollider2D StickinessSphere;
   public float StickinessSpeed = 1.0f;
   public float StickinessSleepThreshold = 0.25f;
+  public float AttachmentCompensation = 0.2f;
   public ContactFilter2D StickinessFilter;
 
   private Rigidbody2D rb;
   private Collider2D _collider;
 
   private Collider2D[] _collisions = new Collider2D[25];
+
+  private Transform _attached;
+  private Vector3 _lastAttachmentPosition;
 
 	// Use this for initialization
 	void Awake () {
@@ -23,7 +27,7 @@ public class Ball : MonoBehaviour {
 	void Update () {
 	   int numCollisions = StickinessSphere.OverlapCollider(StickinessFilter, _collisions);
 
-     for (int i = 0; i < numCollisions; i++)
+     /*for (int i = 0; i < numCollisions; i++)
      {
         var collider = _collisions[i];
         if (collider == null)
@@ -32,8 +36,15 @@ public class Ball : MonoBehaviour {
         if (ball == null)
           continue;
 
-        StickToBall(ball);
+        //StickToBall(ball);
+     }*/
 
+     if (_attached != null)
+     {
+      Vector3 attachmentDiff = _attached.position - _lastAttachmentPosition;
+      attachmentDiff.y = 0; attachmentDiff.z = 0;
+      transform.position -= attachmentDiff * AttachmentCompensation;
+      _lastAttachmentPosition = _attached.position;
      }
 	}
 
@@ -55,6 +66,8 @@ public class Ball : MonoBehaviour {
 
   public void StickToBall(Ball other)
   { 
+    if (other == this)
+      return;
     if (rb.velocity.x < StickinessSleepThreshold)
       return;
     Vector3 dir = other.transform.position - transform.position;
@@ -62,7 +75,7 @@ public class Ball : MonoBehaviour {
     
     if (distance < other._collider.bounds.extents.x)
       return; //too close
-    float proportion = distance / StickinessSphere.radius;
+    float proportion = distance / StickinessSphere.radius * transform.lossyScale.x;
 
     Vector3 stickVector = proportion * StickinessSpeed * dir * Time.deltaTime;
     Vector3 boatPosition = Game.Instance.boat.transform.position;
@@ -74,8 +87,25 @@ public class Ball : MonoBehaviour {
       stickVector.y = 0f;
 
     if (stickVector.y < 0)
-    stickVector.y = 0;
+      stickVector.y = 0;
 
     transform.position += stickVector;
+  }
+
+  public void AttachTo(Transform other)
+  {
+    if (transform.parent == null)
+      transform.parent = other;
+    _attached = other;
+    _lastAttachmentPosition= other.position;
+  }
+
+  void OnCollisionEnter2D(Collision2D collision) {
+    var ball = collision.gameObject.GetComponent<Ball>();
+    if (ball == null)
+      return;
+    if (_attached == null)
+      return;
+    ball.AttachTo(_attached);
   }
 }

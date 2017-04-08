@@ -68,4 +68,12 @@ public class Player : MonoBehaviour {
 			TryToMove(amount - (amount / _maxCollisionAttempts) * attempts, attempts);
 		}
 	}
+
+	void OnCollisionEnter2D(Collision2D collision) {
+		var ball = collision.gameObject.GetComponent<Ball>();
+		if (ball == null)
+			return;
+
+		ball.AttachTo(transform);
+	}
 }
