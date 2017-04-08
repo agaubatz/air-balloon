@@ -228,6 +228,16 @@ Prefab:
       propertyPath: m_Name
       value: ball (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 50483108597787216, guid: 0a12b5a0c3adb40da90dea3712d49976,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50483108597787216, guid: 0a12b5a0c3adb40da90dea3712d49976,
+        type: 2}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a12b5a0c3adb40da90dea3712d49976, type: 2}
   m_IsPrefabParent: 0
