@@ -5,10 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 	public Vector3 DefaultVelocity;
 	public float MovementSpeed;
+	public LayerMask CollisionMask;
+
+	private BoxCollider2D _collider;
 
 	// Use this for initialization
 	void Start () {
-		
+		_collider = GetComponent<BoxCollider2D>();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +27,12 @@ public class Player : MonoBehaviour {
 			inputVector += Vector3.right * MovementSpeed;
 		}
 
-		transform.position += (DefaultVelocity + inputVector) * Time.deltaTime;
+		Vector3 newPos = transform.position + (DefaultVelocity + inputVector) * Time.deltaTime;
+		Vector2 newPos2D = Util.Make2D(newPos);
+		
+		if (!Physics2D.OverlapArea(newPos2D - Util.Make2D(_collider.bounds.extents), newPos2D + Util.Make2D(_collider.bounds.extents), CollisionMask))
+		{
+			transform.position = newPos;
+		}
 	}
 }
