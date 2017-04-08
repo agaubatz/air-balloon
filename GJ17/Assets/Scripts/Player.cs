@@ -6,7 +6,9 @@ public class Player : MonoBehaviour {
 	public Vector3 DefaultVelocity;
 	private float VerticalMovementSpeed = 10f;
 	private float HorizontalMovementSpeed = 10f;
-	private float RotationAmount = 10f;
+	private float RotationAmount = 30f;
+	private float RotationSpeed = 5f;
+	private float RotationCorrectionSpeed = 10f;
 	public LayerMask CollisionMask;
 
 	private BoxCollider2D _boxCollider;
@@ -26,12 +28,14 @@ public class Player : MonoBehaviour {
 		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
 			inputVector += Vector3.left * HorizontalMovementSpeed;
-			//transform.Rotate(Vector3.MoveTowards(transform.Rotation));
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(RotationAmount, Vector3.forward), RotationSpeed*Time.deltaTime);
 		}
-		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+		else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
 			inputVector += Vector3.right * HorizontalMovementSpeed;
-			//transform.Rotate(Vector3.forward * 90);
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(-RotationAmount, Vector3.forward), RotationSpeed*Time.deltaTime);
+		} else {
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(0, Vector3.forward), RotationCorrectionSpeed*Time.deltaTime);
 		}
 
 		TryToMove(inputVector * Time.deltaTime);
