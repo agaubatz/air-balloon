@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public Vector3 DefaultVelocity;
-	private float VerticalMovementSpeed = 5f;
+	private float VerticalMovementSpeed = 2.5f;
 	private float HorizontalMovementSpeed = 10f;
-	private float RotationAmount = 30f;
-	private float RotationSpeed = 5f;
+	private float HorizontalAcceleration = 2f;
+	private float HorizontalDeceleration = 2f;
+	private Vector3 previousInputVector;
+	private float RotationAmount = 20f;
+	private float RotationSpeed = 4f;
 	private float RotationCorrectionSpeed = 10f;
 	public LayerMask CollisionMask;
 
@@ -25,24 +28,26 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		Vector3 inputVector = Vector3.zero;
 		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
-			inputVector += Vector3.left * HorizontalMovementSpeed;
+			inputVector += Vector3.Lerp(previousInputVector, Vector3.left * HorizontalMovementSpeed, HorizontalAcceleration*Time.deltaTime);
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(RotationAmount, Vector3.forward), RotationSpeed*Time.deltaTime);
 		}
 		else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
-			inputVector += Vector3.right * HorizontalMovementSpeed;
+			inputVector += Vector3.Lerp(previousInputVector, Vector3.right * HorizontalMovementSpeed, HorizontalAcceleration*Time.deltaTime);
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(-RotationAmount, Vector3.forward), RotationSpeed*Time.deltaTime);
 		} else {
+			inputVector += Vector3.Lerp(previousInputVector, Vector3.zero, HorizontalDeceleration*Time.deltaTime);
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(0, Vector3.forward), RotationCorrectionSpeed*Time.deltaTime);
 		}
 
 		TryToMove(inputVector * Time.deltaTime);
 
 		TryToMove(DefaultVelocity * Time.deltaTime);
+
+		previousInputVector = inputVector;
 	}
 
 	public void TryToMove(Vector3 amount, int attempts = 0)
