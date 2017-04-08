@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour {
   public CircleCollider2D StickinessSphere;
   public float StickinessSpeed = 1.0f;
+  public float StickinessSleepThreshold = 0.25f;
   public ContactFilter2D StickinessFilter;
 
   private Rigidbody2D rb;
@@ -54,6 +55,8 @@ public class Ball : MonoBehaviour {
 
   public void StickToBall(Ball other)
   { 
+    if (rb.velocity.x < StickinessSleepThreshold)
+      return;
     Vector3 dir = other.transform.position - transform.position;
     float distance = dir.magnitude;
     
@@ -61,6 +64,18 @@ public class Ball : MonoBehaviour {
       return; //too close
     float proportion = distance / StickinessSphere.radius;
 
-    transform.position += proportion * StickinessSpeed * dir * Time.deltaTime;
+    Vector3 stickVector = proportion * StickinessSpeed * dir * Time.deltaTime;
+    Vector3 boatPosition = Game.Instance.boat.transform.position;
+    Vector3 directionToBoat = boatPosition - transform.position;
+
+    if (Mathf.Sign(stickVector.x) != Mathf.Sign(directionToBoat.x))
+      stickVector.x = 0f;
+    if (Mathf.Sign(stickVector.y) != Mathf.Sign(directionToBoat.y))
+      stickVector.y = 0f;
+
+    if (stickVector.y < 0)
+    stickVector.y = 0;
+
+    transform.position += stickVector;
   }
 }
