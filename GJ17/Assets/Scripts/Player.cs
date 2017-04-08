@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public Vector3 DefaultVelocity;
-	private float VerticalMovementSpeed = 10f;
+	private float VerticalMovementSpeed = 5f;
 	private float HorizontalMovementSpeed = 10f;
 	private float RotationAmount = 30f;
 	private float RotationSpeed = 5f;

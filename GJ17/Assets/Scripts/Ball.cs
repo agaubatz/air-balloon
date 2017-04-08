@@ -25,7 +25,7 @@ public class Ball : MonoBehaviour {
   public void DroppedByBird(Vector2 velocity) {
     rb.isKinematic = false;
     Debug.Log("Dropped " + velocity);
-    rb.AddForce(velocity*2.5f, ForceMode2D.Impulse);
+    rb.AddForce(velocity, ForceMode2D.Impulse);
   }
 
   public Vector3 GetSize()
