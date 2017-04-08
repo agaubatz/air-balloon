@@ -25,11 +25,11 @@ public class Game : MonoBehaviour {
 				toRemove.Add(ball);
 			}
 		}
-		/*
+		
 		foreach(GameObject ball in toRemove) {
 			ballsAdded.Remove(ball);
 			Destroy(ball);
-		}*/
+		}
 	}
 
 	public Ball CreateBall(Vector3 position, Transform parent)
