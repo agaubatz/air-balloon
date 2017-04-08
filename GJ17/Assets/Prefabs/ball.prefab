@@ -118,7 +118,7 @@ MonoBehaviour:
   StickinessSphere: {fileID: 58675849647184066}
   StickinessSpeed: 5
   StickinessSleepThreshold: 0
-  AttachmentCompensation: 0.1
+  AttachmentCompensation: 0.2
   StickinessFilter:
     useTriggers: 0
     useLayerMask: 1
