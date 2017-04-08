@@ -7,7 +7,8 @@ public class FollowCamera : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+    //Decide whether we want to hide the cursor?
+		//UnityEngine.Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
