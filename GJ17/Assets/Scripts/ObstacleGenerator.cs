@@ -37,12 +37,13 @@ public class ObstacleGenerator : MonoBehaviour {
 		obstaclePosition.x = (side == -1) ? LeftWall.GetObstacleX() : RightWall.GetObstacleX();
 
 		var newObstacle = Instantiate(ObstaclePrefab, obstaclePosition, Quaternion.identity, transform).GetComponent<Obstacle>();
-		newObstacle.transform.localScale = new Vector3(-side, 1f, 1f);
 
-		newObstacle.SetSize(Random.value);
+		newObstacle.SetSize(Random.value, side == 1);
 		_obstacles.Add(newObstacle);
 
 		_lastObstacleCreatedAt = obstaclePosition.y;
 		_nextObstacleHeight = _lastObstacleCreatedAt + ObstacleSpacing + Random.value * ObstacleSpacing;
+		
+		//Debug.Break();
 	}
 }
