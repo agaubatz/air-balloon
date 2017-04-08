@@ -23,7 +23,6 @@ public class Bird : MonoBehaviour {
         nextFrame -= Util.Make2D(ball.transform.position);
         ball.DroppedByBird(nextFrame);
         ball = null;
-        //TODO: apply some force to it?
       } else {
         ball.transform.position = Vector2.Lerp(ball.transform.position, mousePosition, moveSpeed);
       }

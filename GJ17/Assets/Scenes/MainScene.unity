@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallPrefab: {fileID: 1091589249250934, guid: 0a12b5a0c3adb40da90dea3712d49976, type: 2}
+  boat: {fileID: 1562851112}
 --- !u!4 &894727898
 Transform:
   m_ObjectHideFlags: 0
