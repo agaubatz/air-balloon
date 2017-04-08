@@ -1,0 +1,9 @@
+{
+	"folders":
+	[
+		{
+			"path": "GJ17/Assets/Scripts",
+			"file_exclude_patterns": [ "*.meta" ]
+		}
+	],
+}
