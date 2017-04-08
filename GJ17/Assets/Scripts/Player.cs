@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public Vector3 DefaultVelocity;
-	public float MovementSpeed;
+	private float VerticalMovementSpeed = 10f;
+	private float HorizontalMovementSpeed = 10f;
+	private float RotationAmount = 10f;
 	public LayerMask CollisionMask;
 
-	private BoxCollider2D _collider;
+	private PolygonCollider2D _collider;
 
 	// Use this for initialization
 	void Start () {
-		_collider = GetComponent<BoxCollider2D>();
+		_collider = GetComponent<PolygonCollider2D>();
+		DefaultVelocity = new Vector3(0, VerticalMovementSpeed, 0);
 	}
 	
 	// Update is called once per frame
@@ -20,11 +23,13 @@ public class Player : MonoBehaviour {
 		Vector3 inputVector = Vector3.zero;
 		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
-			inputVector += Vector3.left * MovementSpeed;
+			inputVector += Vector3.left * HorizontalMovementSpeed;
+			//transform.Rotate(Vector3.MoveTowards(transform.Rotation));
 		}
 		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
-			inputVector += Vector3.right * MovementSpeed;
+			inputVector += Vector3.right * HorizontalMovementSpeed;
+			//transform.Rotate(Vector3.forward * 90);
 		}
 
 		TryToMove(inputVector * Time.deltaTime);
