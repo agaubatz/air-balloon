@@ -27,7 +27,14 @@ public class Player : MonoBehaviour {
 			inputVector += Vector3.right * MovementSpeed;
 		}
 
-		Vector3 newPos = transform.position + (DefaultVelocity + inputVector) * Time.deltaTime;
+		TryToMove(inputVector * Time.deltaTime);
+
+		TryToMove(DefaultVelocity * Time.deltaTime);
+	}
+
+	public void TryToMove(Vector3 amount)
+	{
+		Vector3 newPos = transform.position + amount;
 		Vector2 newPos2D = Util.Make2D(newPos);
 		
 		if (!Physics2D.OverlapArea(newPos2D - Util.Make2D(_collider.bounds.extents), newPos2D + Util.Make2D(_collider.bounds.extents), CollisionMask))
