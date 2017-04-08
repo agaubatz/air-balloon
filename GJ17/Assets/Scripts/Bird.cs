@@ -6,6 +6,7 @@ public class Bird : MonoBehaviour {
   private Vector3 mousePosition;
   private float moveSpeed = 0.3f;
   public Ball ball;
+  private Vector2 ballPositionOffset = Vector2.zero;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +25,7 @@ public class Bird : MonoBehaviour {
         ball.DroppedByBird(nextFrame);
         ball = null;
       } else {
-        ball.transform.position = Vector2.Lerp(ball.transform.position, mousePosition, moveSpeed);
+        ball.transform.position = ballPositionOffset + Vector2.Lerp(transform.position, mousePosition, moveSpeed);
       }
     }
 	}
@@ -32,6 +33,7 @@ public class Bird : MonoBehaviour {
   void OnTriggerStay2D(Collider2D collider) {
     if(Input.GetMouseButton(0) && !ball) { //Left click, check for a ball if you don't have one already
       ball = collider.gameObject.GetComponent<Ball>();
+      ballPositionOffset = Util.Make2D(ball.transform.position - transform.position);
       ball.PickedUpByBird();
     }
   }
