@@ -260,6 +260,8 @@ MonoBehaviour:
     type: 2}
   SellingStationPrefab: {fileID: 1894374356251702, guid: e73520f7e3fb045928faa96b64b5dc95,
     type: 2}
+  BallColorsPrefab: {fileID: 1449524103977472, guid: 6c336c55cab57478099041131b2adba1,
+    type: 2}
   boat: {fileID: 1562851112}
 --- !u!4 &894727898
 Transform:

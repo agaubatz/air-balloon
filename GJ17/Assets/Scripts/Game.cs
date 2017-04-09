@@ -11,7 +11,6 @@ public class Game : MonoBehaviour {
 	public GameObject ObstaclePrefab;
 	public GameObject SellingStationPrefab;
 	public Player boat;
-	public BallColors ballColors = new BallColors();
 
 	// Use this for initialization
 	void Awake () {
@@ -53,7 +52,7 @@ public class Game : MonoBehaviour {
 	}
 
 	public SellingStation CreateSellingStation(Vector3 position, Transform transform) {
-		var newSellingStation = Instantiate(SellingStationPrefab, position, Quaternion.identity, transform); 
+		var newSellingStation = Instantiate(SellingStationPrefab, position, Quaternion.identity, transform);
 		objectsToDeleteWhenOffscreen.Add(newSellingStation);
 
 		return newSellingStation.GetComponent<SellingStation>();

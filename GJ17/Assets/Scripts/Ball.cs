@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
+  private static string[] colorList = new string[]{"Yellow", "Green", "Purple", "Blue"};
   public CircleCollider2D StickinessSphere;
   public float StickinessSpeed = 1.0f;
   public float StickinessSleepThreshold = 0.25f;
   public float AttachmentCompensation = 0.2f;
   public ContactFilter2D StickinessFilter;
+  public Sprite YellowSprite;
+  public Sprite GreenSprite;
+  public Sprite PurpleSprite;
+  public Sprite BlueSprite;
 
   private Rigidbody2D rb;
   private Collider2D _collider;
@@ -16,21 +21,29 @@ public class Ball : MonoBehaviour {
 
   private Transform _attached;
   private Vector3 _lastAttachmentPosition;
-  private string _color;
+  private string _myColor;
 
 	// Use this for initialization
 	void Awake () {
 		rb = GetComponent<Rigidbody2D>();
     _collider = GetComponent<Collider2D>();
-    
-    _color = Game.Instance.ballColors.GetRandomColor();
+    _myColor = colorList[Random.Range(0, colorList.Length)];
+
     SpriteRenderer r = GetComponent<SpriteRenderer>();
-    r.color = Game.Instance.ballColors.ColorMap[_color];
+    if(_myColor == "Yellow") {
+      r.sprite = YellowSprite;
+    } else if(_myColor == "Green") {
+      r.sprite = GreenSprite;
+    } else if(_myColor == "Purple") {
+      r.sprite = PurpleSprite;
+    } else {
+      r.sprite = BlueSprite;
+    }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	   int numCollisions = StickinessSphere.OverlapCollider(StickinessFilter, _collisions);
+	   //int numCollisions = StickinessSphere.OverlapCollider(StickinessFilter, _collisions);
 
      /*for (int i = 0; i < numCollisions; i++)
      {
