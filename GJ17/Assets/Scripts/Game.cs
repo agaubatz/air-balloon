@@ -24,6 +24,7 @@ public class Game : MonoBehaviour {
 	public Text timeRemainingText;
 	public Text gameOverText;
 	public Text gameOverTimeText;
+	public Text gameOverInstructionsText;
 
 	// Use this for initialization
 	void Awake () {
@@ -32,6 +33,7 @@ public class Game : MonoBehaviour {
 		UnityEngine.Cursor.visible = false;
 		gameOverText.enabled = false;
 		gameOverTimeText.enabled = false;
+		gameOverInstructionsText.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -79,6 +81,7 @@ public class Game : MonoBehaviour {
 		gameOverText.enabled = true;
 		gameOverTimeText.text = "Total Time: " + (int)_totalTime;
 		gameOverTimeText.enabled = true;
+		gameOverInstructionsText.enabled = true;
 	}
 
 	public Ball CreateBall(Vector3 position, Transform parent)

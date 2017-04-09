@@ -6,7 +6,6 @@ public class Player : MonoBehaviour {
 	public Vector3 DefaultVelocity;
 	private Vector3 OppositeVelocity;
 	private Vector3 GoalVelocity;
-	public int Health = 3;
 	private float VerticalMovementSpeed = 2.5f;
 	private float HorizontalMovementSpeed = 10f;
 	private float HorizontalAcceleration = 2f;
@@ -40,7 +39,7 @@ public class Player : MonoBehaviour {
 		if(Game.Instance.GameOver) {
 			return;
 		}
-		
+
 		Vector3 inputVector = Vector3.zero;
 		if(docked) {
 			if(Input.GetKey(KeyCode.Space)) {
