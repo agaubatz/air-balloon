@@ -759,6 +759,11 @@ Prefab:
       propertyPath: m_Name
       value: RightWall
       objectReference: {fileID: 0}
+    - target: {fileID: 212580472763936858, guid: 431b3da5c069e4587ab6051bd954f65a,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 431b3da5c069e4587ab6051bd954f65a, type: 2}
   m_IsPrefabParent: 0
