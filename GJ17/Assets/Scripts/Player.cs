@@ -139,4 +139,21 @@ public class Player : MonoBehaviour {
 			b.Detach();
 		}
 	}
+
+	public void Show()
+	{
+		GetComponentInChildren<Animator>().SetTrigger("Start");
+		StartCoroutine(ShowCoroutine());
+	}
+
+	IEnumerator ShowCoroutine()
+	{
+		yield return null;
+		GetComponentInChildren<SpriteRenderer>().enabled = true;
+	}
+
+	public void Die()
+	{
+		GetComponentInChildren<Animator>().SetTrigger("Dead");
+	}
 }

@@ -74,6 +74,7 @@ public class Game : MonoBehaviour {
 			totalTimeText.enabled = true;
 			timeRemainingText.enabled = true;
 			_gameStarted = true;
+			boat.Show();
 		}
 
 		if(_gameOver && Input.GetKey(KeyCode.Space)) {
@@ -103,6 +104,8 @@ public class Game : MonoBehaviour {
 		gameOverTimeText.text = "Total Seconds: " + (int)_totalTime;
 		gameOverTimeText.enabled = true;
 		gameOverInstructionsText.enabled = true;
+
+		boat.Die();
 	}
 
 	public Ball CreateBall(Vector3 position, Transform parent)
