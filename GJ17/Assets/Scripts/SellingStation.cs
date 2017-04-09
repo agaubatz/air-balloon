@@ -24,10 +24,10 @@ public class SellingStation : MonoBehaviour {
       int price = (int)((Random.value * 10)) + 1;
       prices.Add(color, price);
     }
-    YellowText.text = prices["Yellow"].ToString();
-    GreenText.text = prices["Green"].ToString();
-    PurpleText.text = prices["Purple"].ToString();
-    BlueText.text = prices["Blue"].ToString();
+    YellowText.text = prices["Yellow"].ToString() + 's';
+    GreenText.text = prices["Green"].ToString() + 's';
+    PurpleText.text = prices["Purple"].ToString() + 's';
+    BlueText.text = prices["Blue"].ToString() + 's';
 	}
 	
 	// Update is called once per frame
