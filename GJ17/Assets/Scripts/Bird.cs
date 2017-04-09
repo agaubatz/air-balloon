@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Spine.Unity;
 using UnityEngine;
 
 public class Bird : MonoBehaviour {
   private Vector3 mousePosition;
   private float moveSpeed = 0.3f;
   public Ball ball;
+  public SkeletonAnimation skeletonAnimation;
   private Vector2 ballPositionOffset = Vector2.zero;
 
 	// Use this for initialization
 	void Start () {
-		
+		skeletonAnimation = GetComponentInChildren<SkeletonAnimation>();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +26,7 @@ public class Bird : MonoBehaviour {
         nextFrame -= Util.Make2D(ball.transform.position);
         ball.DroppedByBird(nextFrame);
         ball = null;
+         skeletonAnimation.state.SetAnimation(0, "flap", true);
       } else {
         ball.transform.position = ballPositionOffset + Vector2.Lerp(transform.position, mousePosition, moveSpeed);
       }
@@ -36,6 +39,7 @@ public class Bird : MonoBehaviour {
       if(ball && !ball.IsSold) {
         ballPositionOffset = Util.Make2D(ball.transform.position - transform.position);
         ball.PickedUpByBird();
+        skeletonAnimation.state.SetAnimation(0, "flap-withgem", true);
       }
     }
   }
