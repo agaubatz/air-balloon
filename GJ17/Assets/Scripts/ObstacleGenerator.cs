@@ -72,7 +72,7 @@ public class ObstacleGenerator : MonoBehaviour {
 				_lastObstacleCreatedAt = sellingPosition.y;
 				_nextObstacleHeight = _lastObstacleCreatedAt + ObstacleSpacing + Random.value * ObstacleSpacing + InitialObstacleHeight;
 
-				_obstaclesUntilStation = (int)Mathf.Min((Random.value * (InitialObstaclesUntilStation + (Game.Instance.TimeSinceGameStart() / 15f))) + 1, 20);
+				_obstaclesUntilStation = (int)Mathf.Min(InitialObstaclesUntilStation + (Random.value * ((Game.Instance.TimeSinceGameStart() / 20f))) + 1, 20);
 			} else {
 				float side = (Random.value > .5) ? -1f : 1f;
 

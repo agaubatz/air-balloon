@@ -1419,6 +1419,11 @@ Prefab:
       propertyPath: RightWall
       value: 
       objectReference: {fileID: 1649080461}
+    - target: {fileID: 114551599874796288, guid: 2cb4b49fcd6724c358fd706f2e3fd985,
+        type: 2}
+      propertyPath: InitialObstaclesUntilStation
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cb4b49fcd6724c358fd706f2e3fd985, type: 2}
   m_IsPrefabParent: 0
