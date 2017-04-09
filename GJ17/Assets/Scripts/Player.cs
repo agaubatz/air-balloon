@@ -27,7 +27,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		_boxCollider = GetComponentInChildren<BoxCollider2D>();
+		_boxCollider = GetComponentInChildren<BoxCollider2D>(true);
 		_bounds = _boxCollider.bounds;
 		DefaultVelocity = new Vector3(0, VerticalMovementSpeed, 0);
 		GoalVelocity = DefaultVelocity;
@@ -142,14 +142,8 @@ public class Player : MonoBehaviour {
 
 	public void Show()
 	{
+		GetComponentInChildren<SpriteRenderer>(true).gameObject.SetActive(true);
 		GetComponentInChildren<Animator>().SetTrigger("Start");
-		StartCoroutine(ShowCoroutine());
-	}
-
-	IEnumerator ShowCoroutine()
-	{
-		yield return null;
-		GetComponentInChildren<SpriteRenderer>().enabled = true;
 	}
 
 	public void Die()
