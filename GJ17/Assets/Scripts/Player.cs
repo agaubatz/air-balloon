@@ -144,6 +144,7 @@ public class Player : MonoBehaviour {
 	{
 		GetComponentInChildren<SpriteRenderer>(true).gameObject.SetActive(true);
 		GetComponentInChildren<Animator>().SetTrigger("Start");
+		_bounds = _boxCollider.bounds;
 	}
 
 	public void Die()
