@@ -200,7 +200,7 @@ MonoBehaviour:
     Try to maximize your total time
 
 
-    Spacebar to start the game!'
+    Press space to start the game!'
 --- !u!222 &101384179
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1090,7 +1090,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press Spacebar to restart
+  m_Text: Press space to restart.
 --- !u!222 &1386565400
 CanvasRenderer:
   m_ObjectHideFlags: 0

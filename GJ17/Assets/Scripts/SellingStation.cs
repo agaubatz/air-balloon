@@ -15,6 +15,7 @@ public class SellingStation : MonoBehaviour {
   public Text GreenText;
   public Text PurpleText;
   public Text BlueText;
+  public GameObject Instructions;
 
   private bool _isActive = true;
 
@@ -44,6 +45,7 @@ public class SellingStation : MonoBehaviour {
       boat = collider.transform.parent.GetComponent<Player>();
     if(boat != null) {
       boat.DockAtStation(this);
+      ShowText();
     }
   }
 
@@ -53,5 +55,14 @@ public class SellingStation : MonoBehaviour {
 
   public void Deactivate() {
     _isActive = false;
+    HideText();
+  }
+
+  public void ShowText() {
+    Instructions.SetActive(true);
+  }
+
+  public void HideText() {
+    Instructions.SetActive(false);
   }
 }
