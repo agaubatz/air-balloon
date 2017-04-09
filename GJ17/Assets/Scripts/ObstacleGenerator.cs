@@ -29,6 +29,10 @@ public class ObstacleGenerator : MonoBehaviour {
 		GenerateObstaclesUpTo(camHeight + CreateAheadDistance);
 	}
 
+	public bool GeneratingSellingStationSoon() {
+		return _obstaclesUntilStation == 0 && _nextObstacleHeight > (Camera.main.transform.position.y + CreateAheadDistance + 1f);
+	}
+
 	void GenerateObstaclesUpTo(float height) {
 		if (_nextObstacleHeight > height) {
 			return;

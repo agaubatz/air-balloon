@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 4382627530223288}
   - component: {fileID: 212639231464618322}
   - component: {fileID: 60730665540233304}
+  - component: {fileID: 114511622602725158}
   m_Layer: 8
   m_Name: bucket
   m_TagString: Untagged
@@ -317,7 +318,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1894374356251702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.09, y: 0, z: 0}
+  m_LocalPosition: {x: -5.423852, y: 36.62937, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4396751155057726}
@@ -652,6 +653,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114511622602725158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383094607780428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc12f92c7d8c946c087739bfdc4415e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114577547145499138
 MonoBehaviour:
   m_ObjectHideFlags: 1

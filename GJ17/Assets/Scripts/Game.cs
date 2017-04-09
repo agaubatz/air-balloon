@@ -14,6 +14,7 @@ public class Game : MonoBehaviour {
 	public GameObject BallPrefab;
 	public GameObject ObstaclePrefab;
 	public GameObject SellingStationPrefab;
+	public GameObject RockPrefab;
 	public Player boat;
 	public Text scoreText;
 
@@ -46,6 +47,10 @@ public class Game : MonoBehaviour {
 		scoreText.text = "Score: " + _score;
 	}
 
+	public void GameOver() {
+		Application.Quit();
+	}
+
 	public Ball CreateBall(Vector3 position, Transform parent)
 	{
 		var newBall = Instantiate(BallPrefab, position, Quaternion.identity, parent);
@@ -66,5 +71,12 @@ public class Game : MonoBehaviour {
 		objectsToDeleteWhenOffscreen.Add(newSellingStation);
 
 		return newSellingStation.GetComponent<SellingStation>();
+	}
+
+	public Rock CreateRock(Vector3 position, Transform transform) {
+		var newRock = Instantiate(RockPrefab, position, Quaternion.identity, transform);
+		objectsToDeleteWhenOffscreen.Add(newRock);
+
+		return newRock.GetComponent<Rock>();
 	}
 }

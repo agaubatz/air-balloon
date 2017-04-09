@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public Vector3 DefaultVelocity;
+	public int Health = 10;
 	private float VerticalMovementSpeed = 2.5f;
 	private float HorizontalMovementSpeed = 10f;
 	private float HorizontalAcceleration = 2f;
@@ -79,14 +80,31 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		var ball = collision.gameObject.GetComponent<Ball>();
-		if (ball == null)
-			return;
+		if (ball != null) {
+			ball.AttachTo(transform);
+		}
+		
+		var rock = collision.gameObject.GetComponent<Rock>();
+		if(rock != null) {
+			TakeDamage();
+			rock.BlowUp();
+		}
+	}
 
-		ball.AttachTo(transform);
+	void TakeDamage() {
+		Debug.Log("OW");
+		Health--;
+		if(Health == 0) {
+			Game.Instance.GameOver();
+		}
 	}
 
 	public void DockAtStation() {
 		//TODO: Probably smoothly animate you to a "resting" position.
 		docked = true;
+	}
+
+	public bool IsDocked() {
+		return docked;
 	}
 }
