@@ -45,7 +45,7 @@ public class SellingStation : MonoBehaviour {
       boat = collider.transform.parent.GetComponent<Player>();
     if(boat != null) {
       boat.DockAtStation(this);
-      ShowText();
+      StartCoroutine(ShowText());
     }
   }
 
@@ -58,7 +58,11 @@ public class SellingStation : MonoBehaviour {
     HideText();
   }
 
-  public void ShowText() {
+  public IEnumerator ShowText() {
+    yield return new WaitForSeconds(8.0f);
+    if (!_isActive)
+      yield break;
+
     Instructions.SetActive(true);
   }
 
