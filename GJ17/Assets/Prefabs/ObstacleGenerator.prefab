@@ -51,10 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5cfe3036bd7404f8540da7047bfa47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialObstacleHeight: 20
+  InitialObstacleHeight: 10
   ObstacleSpacing: 5
   CreateAheadDistance: 20
-  ObstaclePrefab: {fileID: 1262528418991190, guid: 91dd533959b0d4f09aa99074eaf956db,
-    type: 2}
   LeftWall: {fileID: 0}
   RightWall: {fileID: 0}
+  InitialObstaclesUntilStation: 3

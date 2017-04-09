@@ -58,7 +58,7 @@ public class ObstacleGenerator : MonoBehaviour {
 				rightObstacle.SetSize(1f-proportion, true);
 
 				_lastObstacleCreatedAt = sellingPosition.y;
-				_nextObstacleHeight = _lastObstacleCreatedAt + ObstacleSpacing + Random.value * ObstacleSpacing;
+				_nextObstacleHeight = _lastObstacleCreatedAt + ObstacleSpacing + Random.value * ObstacleSpacing + InitialObstacleHeight;
 
 				//TODO: make them less frequent as the game goes on, probably
 				//TODO: add some randomness in how often they occur
