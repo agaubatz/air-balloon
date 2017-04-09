@@ -9,7 +9,7 @@ public class Wall : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		_bounds = GetComponentInChildren<SpriteRenderer>().bounds;
+		_bounds = GetComponentInChildren<Collider2D>().bounds;
 	}
 	
 	// Update is called once per frame
