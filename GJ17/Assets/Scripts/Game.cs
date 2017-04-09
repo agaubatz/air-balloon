@@ -11,7 +11,7 @@ public class Game : MonoBehaviour {
 	private bool _gameOver = false;
 
 	private float _scoreTimer = 60f;
-	private float _totalTime = 0f;
+	private float _totalTime = 1f; //Start at 1 for rounding
 
 	private List<GameObject> objectsToDeleteWhenOffscreen = new List<GameObject>();
 	public List<GameObject> toRemove = new List<GameObject>();
