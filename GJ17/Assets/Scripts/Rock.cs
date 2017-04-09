@@ -8,7 +8,7 @@ public class Rock : MonoBehaviour {
 	void Start () {
 		var rb = GetComponent<Rigidbody2D>();
     rb.AddTorque(Random.Range(-2f, 2f), ForceMode2D.Impulse);
-    float scale = Random.Range(0.1f, 0.2f); //Change to match whatever the object scale is.
+    float scale = Random.Range(0.4f, 0.6f); //Change to match whatever the object scale is.
     transform.localScale = new Vector3(scale, scale, scale);
 	}
 	
