@@ -36,8 +36,8 @@ public class ObstacleGenerator : MonoBehaviour {
 
 		if(_obstaclesUntilStation == 0) {
 				Vector3 sellingPosition = new Vector3(0, _nextObstacleHeight, 0);
-				sellingPosition.x = Random.Range(LeftWall.GetObstacleX(), RightWall.GetObstacleX());
-				var proportion = (sellingPosition.x -LeftWall.GetObstacleX())/(RightWall.GetObstacleX() - LeftWall.GetObstacleX());
+				sellingPosition.x = Random.Range(LeftWall.GetObstacleX() + Obstacle.MinSize, RightWall.GetObstacleX() - Obstacle.MinSize);
+				var proportion = (sellingPosition.x -LeftWall.GetObstacleX() - Obstacle.MinSize)/(RightWall.GetObstacleX() - LeftWall.GetObstacleX() - 2f*Obstacle.MinSize);
 
 				var newSellingStation = Game.Instance.CreateSellingStation(sellingPosition, transform);
 
@@ -49,9 +49,8 @@ public class ObstacleGenerator : MonoBehaviour {
 				var leftObstacle = Game.Instance.CreateObstacle(leftObstaclePosition, transform);
 				var rightObstacle = Game.Instance.CreateObstacle(rightObstaclePosition, transform);
 
-				Debug.Log(proportion);
 				leftObstacle.SetSize(proportion, false);
-				rightObstacle.SetSize(proportion, true);
+				rightObstacle.SetSize(1f-proportion, true);
 
 				_lastObstacleCreatedAt = sellingPosition.y;
 				_nextObstacleHeight = _lastObstacleCreatedAt + ObstacleSpacing + Random.value * ObstacleSpacing;

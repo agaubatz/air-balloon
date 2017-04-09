@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour {
-	public float MinSize = 3f;
-	public float MaxSize = 7f;
+	public const float MinSize = 7f;
+	public const float MaxSize = 9f;
 
 	private SpriteRenderer _sprite;
 	private Collider2D _collider;
