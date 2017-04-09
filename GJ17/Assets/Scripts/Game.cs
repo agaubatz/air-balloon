@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour {
 	public static Game Instance { get; private set; }
@@ -14,6 +15,7 @@ public class Game : MonoBehaviour {
 	public GameObject ObstaclePrefab;
 	public GameObject SellingStationPrefab;
 	public Player boat;
+	public Text scoreText;
 
 	// Use this for initialization
 	void Awake () {
@@ -41,7 +43,7 @@ public class Game : MonoBehaviour {
 
 	public void AddScore(int score) {
 		_score += score;
-		Debug.Log("BLAM! " + _score);
+		scoreText.text = "Score: " + _score;
 	}
 
 	public Ball CreateBall(Vector3 position, Transform parent)
