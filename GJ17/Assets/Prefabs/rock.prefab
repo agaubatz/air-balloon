@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e6995ccc69945b19b3212778dabcaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RockHitVFX: {fileID: 1186621820002956, guid: 9c7afbffccb134568b62d568df415cec, type: 2}
 --- !u!212 &212689085532064106
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rock : MonoBehaviour {
+  public GameObject RockHitVFX;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,8 @@ public class Rock : MonoBehaviour {
 
   public void BlowUp() {
     //Game.Instance.toRemove.Add(gameObject);
+    var vfx = Instantiate(RockHitVFX, transform.position, Quaternion.identity);
+    Destroy(vfx, 2.0f);
   }
 
   void OnCollisionEnter2D(Collision2D collision) {
