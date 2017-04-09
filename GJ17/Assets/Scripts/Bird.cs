@@ -9,6 +9,9 @@ public class Bird : MonoBehaviour {
   public Ball ball;
   public SkeletonAnimation skeletonAnimation;
   private Vector2 ballPositionOffset = Vector2.zero;
+  public ContactFilter2D PickupFilter;
+
+  private Collider2D[] _collisions = new Collider2D[25];
 
 	// Use this for initialization
 	void Start () {
@@ -31,20 +34,31 @@ public class Bird : MonoBehaviour {
         ball.transform.position = ballPositionOffset + Vector2.Lerp(transform.position, mousePosition, moveSpeed);
       }
     }
-	}
 
-  void OnTriggerStay2D(Collider2D collider) {
-    if(!Game.Instance.IsGameGoing()) {
-      return;
-    }
+    if (Game.Instance.IsGameGoing())
+    {
+      if(Input.GetMouseButton(0) && !ball) { //Left click, check for a ball if you don't have one already
+        int numCollisions = GetComponent<Collider2D>().OverlapCollider(PickupFilter, _collisions);
+        float minDistance = 999999f;
+        for (int i = 0; i < numCollisions; i++)
+        {
+          var curBall = _collisions[i].gameObject.GetComponent<Ball>();
+          if(curBall && !curBall.IsSold) {
+            float dist = Vector3.Distance(transform.position, curBall.transform.position);
+            if (dist < minDistance)
+            {
+              ball = curBall;
+            }
+          }
+        }
 
-    if(Input.GetMouseButton(0) && !ball) { //Left click, check for a ball if you don't have one already
-      ball = collider.gameObject.GetComponent<Ball>();
-      if(ball && !ball.IsSold) {
-        ballPositionOffset = Util.Make2D(ball.transform.position - transform.position);
-        ball.PickedUpByBird();
-        skeletonAnimation.state.SetAnimation(0, "flap-withgem", true);
+        if (ball)
+        {
+          ballPositionOffset = Util.Make2D(ball.transform.position - transform.position);
+          ball.PickedUpByBird();
+          skeletonAnimation.state.SetAnimation(0, "flap-withgem", true);
+        }
       }
     }
-  }
+	}
 }

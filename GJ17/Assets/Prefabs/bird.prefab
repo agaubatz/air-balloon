@@ -83,7 +83,7 @@ Transform:
   m_GameObject: {fileID: 1401012441511746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.1862626, y: -5.05, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4443529399006540}
   - {fileID: 4398113461526752}
@@ -156,7 +156,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.425
+  m_Radius: 2
 --- !u!108 &108042018797671482
 Light:
   m_ObjectHideFlags: 1
@@ -231,3 +231,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 0}
+  skeletonAnimation: {fileID: 0}
+  PickupFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 512
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
