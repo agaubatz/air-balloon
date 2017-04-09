@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bucket : MonoBehaviour {
   private SellingStation sellingStation;
+  private bool _isActive = true;
 
 	// Use this for initialization
 	void Start () {

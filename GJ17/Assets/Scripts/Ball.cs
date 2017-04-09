@@ -137,7 +137,15 @@ public class Ball : MonoBehaviour {
   void OnCollisionEnter2D(Collision2D collision) {
     var ball = collision.gameObject.GetComponent<Ball>();
     if (ball == null)
+    {
+      var rock = collision.gameObject.GetComponent<Rock>();
+      if (rock != null && _attached != null) 
+      {
+        rock.BlowUp();
+        Game.Instance.boat.Flip();
+      }
       return;
+    }
     if (_attached == null)
       return;
     ball.AttachTo(_attached);
@@ -150,7 +158,7 @@ public class Ball : MonoBehaviour {
     StartCoroutine(SellCoroutine());
   }
 
-  void Detach()
+  public void Detach()
   {
     transform.parent = null;
     _attached = null;

@@ -22,12 +22,13 @@ public class Player : MonoBehaviour {
 
 	private Bounds _bounds;
 	private BoxCollider2D _boxCollider;
+	private SellingStation _currentStation;
 
 	private const int _maxCollisionAttempts = 10;
 
 	// Use this for initialization
 	void Start () {
-		_boxCollider = GetComponent<BoxCollider2D>();
+		_boxCollider = GetComponentInChildren<BoxCollider2D>();
 		_bounds = _boxCollider.bounds;
 		DefaultVelocity = new Vector3(0, VerticalMovementSpeed, 0);
 		GoalVelocity = DefaultVelocity;
@@ -39,7 +40,9 @@ public class Player : MonoBehaviour {
 		Vector3 inputVector = Vector3.zero;
 		if(docked) {
 			if(Input.GetKey(KeyCode.Space)) {
+				_currentStation.Deactivate();
 				docked = false;
+				_currentStation = null;
 			}
 		}
 
@@ -106,17 +109,27 @@ public class Player : MonoBehaviour {
 		
 		var rock = collision.gameObject.GetComponent<Rock>();
 		if(rock != null) {
-			//Something something flip you over here
+			Flip();
 			rock.BlowUp();
 		}
 	}
 
-	public void DockAtStation() {
+	public void DockAtStation(SellingStation station) {
 		//TODO: Probably smoothly animate you to a "resting" position.
 		docked = true;
+		_currentStation = station;
 	}
 
 	public bool IsDocked() {
 		return docked;
+	}
+
+	public void Flip() {
+		GetComponentInChildren<Animator>().SetTrigger("Flip");
+		
+		foreach (Ball b in GetComponentsInChildren<Ball>())
+		{
+			b.Detach();
+		}
 	}
 }

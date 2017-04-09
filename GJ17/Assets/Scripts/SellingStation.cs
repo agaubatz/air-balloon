@@ -16,6 +16,8 @@ public class SellingStation : MonoBehaviour {
   public Text PurpleText;
   public Text BlueText;
 
+  private bool _isActive = true;
+
 	// Use this for initialization
 	void Start () {
     foreach(string color in colorList) {
@@ -34,13 +36,22 @@ public class SellingStation : MonoBehaviour {
 	}
 
   void OnTriggerEnter2D(Collider2D collider) {
-    if(collider.transform.gameObject.name == "boat") {
-      var boat = collider.gameObject.GetComponent<Player>();
-      boat.DockAtStation();
+    if (!_isActive)
+      return;
+
+    var boat = collider.gameObject.GetComponent<Player>();
+    if (boat == null && collider.transform.parent != null)
+      boat = collider.transform.parent.GetComponent<Player>();
+    if(boat != null) {
+      boat.DockAtStation(this);
     }
   }
 
   public int GetPrice(string color) {
     return prices[color];
+  }
+
+  public void Deactivate() {
+    _isActive = false;
   }
 }
