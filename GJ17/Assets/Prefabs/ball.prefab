@@ -126,6 +126,8 @@ MonoBehaviour:
   GreenSprite: {fileID: 21300000, guid: a60efc951561848f88cd420a208a7402, type: 3}
   PurpleSprite: {fileID: 21300000, guid: 67f8b46ec65a246eba49c0b1a62bf293, type: 3}
   BlueSprite: {fileID: 21300000, guid: e0628b4f876ef460bad829132c665dd8, type: 3}
+  SellParticlePrefab: {fileID: 1829198618852394, guid: 52725f4037955436dbbe99a04baa8a70,
+    type: 2}
 --- !u!212 &212138735047008668
 SpriteRenderer:
   m_ObjectHideFlags: 1

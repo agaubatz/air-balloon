@@ -14,6 +14,8 @@ public class Ball : MonoBehaviour {
   public Sprite PurpleSprite;
   public Sprite BlueSprite;
 
+  public GameObject SellParticlePrefab;
+
   public bool IsSold { get; private set;}
   public bool IsBeingCarried { get; private set; }
 
@@ -165,9 +167,11 @@ public class Ball : MonoBehaviour {
   }
 
   IEnumerator SellCoroutine() {
-    yield return new WaitForSeconds(2.0f);
+    var vfx = Instantiate(SellParticlePrefab, transform.position, Quaternion.identity, transform);
+    Destroy(vfx, 3.0f);
+    yield return new WaitForSeconds(1.0f);
 
     Game.Instance.toRemove.Add(gameObject);
-
+    vfx.transform.parent = null;
   }
 }
