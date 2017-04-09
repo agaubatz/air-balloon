@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour {
 	public static Game Instance { get; private set; }
 
-	private int _score = 0;
+	private float _scoreTimer = 120f;
+	private float _totalTime = 0f;
 
 	private List<GameObject> objectsToDeleteWhenOffscreen = new List<GameObject>();
 	public List<GameObject> toRemove = new List<GameObject>();
@@ -16,7 +17,8 @@ public class Game : MonoBehaviour {
 	public GameObject SellingStationPrefab;
 	public GameObject RockPrefab;
 	public Player boat;
-	public Text scoreText;
+	public Text totalTimeText;
+	public Text timeRemainingText;
 
 	// Use this for initialization
 	void Awake () {
@@ -39,16 +41,29 @@ public class Game : MonoBehaviour {
 			Destroy(obj);
 		}
 
+		if(!boat.IsDocked()) {
+			_totalTime += Time.deltaTime;
+		_scoreTimer -= Time.deltaTime;
+		}
+
+		totalTimeText.text = "Total Time: " + (int)_totalTime;
+		timeRemainingText.text = "Time Remaining: " + (int)_scoreTimer;
+
+		if(_scoreTimer < 0f) {
+			_scoreTimer = 0;
+			GameOver();
+		}
+
 		toRemove.Clear();
 	}
 
 	public void AddScore(int score) {
-		_score += score;
-		scoreText.text = "Score: " + _score;
+		_scoreTimer += score;
 	}
 
 	public void GameOver() {
-		Debug.Log("GAME OVER");
+		totalTimeText.text = "GAME OVER";
+		timeRemainingText.text = "Game OVER";
 		Application.Quit();
 	}
 

@@ -19,8 +19,7 @@ public class SellingStation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
     foreach(string color in colorList) {
-      int price = (int)((Random.value * 100)) + 10;
-      price -= price%10;
+      int price = (int)((Random.value * 10)) + 1;
       prices.Add(color, price);
     }
     YellowText.text = prices["Yellow"].ToString();
