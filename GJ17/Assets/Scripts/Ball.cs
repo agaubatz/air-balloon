@@ -24,7 +24,6 @@ public class Ball : MonoBehaviour {
     _collider = GetComponent<Collider2D>();
     
     _color = Game.Instance.ballColors.GetRandomColor();
-    Debug.Log(_color);
     SpriteRenderer r = GetComponent<SpriteRenderer>();
     r.color = Game.Instance.ballColors.ColorMap[_color];
 	}
@@ -61,12 +60,10 @@ public class Ball : MonoBehaviour {
 
   public void PickedUpByBird() {
     rb.isKinematic = true;
-    Debug.Log("picked up");
   }
 
   public void DroppedByBird(Vector2 velocity) {
     rb.isKinematic = false;
-    Debug.Log("Dropped " + velocity);
     //rb.AddForce(velocity, ForceMode2D.Impulse);
   }
 

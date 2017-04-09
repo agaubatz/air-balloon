@@ -30,7 +30,6 @@ public class Game : MonoBehaviour {
 		
 		
 		foreach(GameObject obj in toRemove) {
-			Debug.Log("Removing " + obj);
 			objectsToDeleteWhenOffscreen.Remove(obj);
 			Destroy(obj);
 		}

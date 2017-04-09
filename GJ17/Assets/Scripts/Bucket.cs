@@ -16,7 +16,6 @@ public class Bucket : MonoBehaviour {
 	}
 
   void OnTriggerEnter2D(Collider2D collider) {
-    Debug.Log(collider.transform.gameObject.name);
     var ball = collider.gameObject.GetComponent<Ball>();
     if(ball) {
 
