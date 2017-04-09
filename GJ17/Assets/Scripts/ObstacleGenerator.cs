@@ -51,7 +51,7 @@ public class ObstacleGenerator : MonoBehaviour {
 
 				Debug.Log(proportion);
 				leftObstacle.SetSize(proportion, false);
-				rightObstacle.SetSize(1f-proportion, true);
+				rightObstacle.SetSize(proportion, true);
 
 				_lastObstacleCreatedAt = sellingPosition.y;
 				_nextObstacleHeight = _lastObstacleCreatedAt + ObstacleSpacing + Random.value * ObstacleSpacing;

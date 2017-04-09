@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
 	private float RotationAmount = 20f;
 	private float RotationSpeed = 4f;
 	private float RotationCorrectionSpeed = 10f;
+	private bool docked = false;
 	public LayerMask CollisionMask;
 
 	private Bounds _bounds;
@@ -29,6 +30,14 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 inputVector = Vector3.zero;
+		if(docked) {
+			if(Input.GetKey(KeyCode.Space)) {
+				docked = false;
+			} else {
+				return;
+			}
+		}
+
 		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
 			inputVector += Vector3.Lerp(previousInputVector, Vector3.left * HorizontalMovementSpeed, HorizontalAcceleration*Time.deltaTime);
@@ -75,5 +84,10 @@ public class Player : MonoBehaviour {
 			return;
 
 		ball.AttachTo(transform);
+	}
+
+	public void DockAtStation() {
+		//TODO: Probably smoothly animate you to a "resting" position.
+		docked = true;
 	}
 }
