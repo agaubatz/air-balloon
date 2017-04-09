@@ -18,10 +18,11 @@ public class Rock : MonoBehaviour {
 	}
 
   public void BlowUp() {
-    Game.Instance.toRemove.Add(gameObject);
+    //Game.Instance.toRemove.Add(gameObject);
   }
 
   void OnCollisionEnter2D(Collision2D collision) {
+    /*
     var obstacle = collision.gameObject.GetComponent<Obstacle>();
     if(obstacle) {
       BlowUp();
@@ -35,5 +36,6 @@ public class Rock : MonoBehaviour {
     if(wall) {
       BlowUp();
     }
+    */
   }
 }
