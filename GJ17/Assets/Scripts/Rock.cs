@@ -19,13 +19,12 @@ public class Rock : MonoBehaviour {
 	}
 
   public void BlowUp() {
-    //Game.Instance.toRemove.Add(gameObject);
+    Game.Instance.toRemove.Add(gameObject);
     var vfx = Instantiate(RockHitVFX, transform.position, Quaternion.identity);
     Destroy(vfx, 2.0f);
   }
 
   void OnCollisionEnter2D(Collision2D collision) {
-    /*
     var obstacle = collision.gameObject.GetComponent<Obstacle>();
     if(obstacle) {
       BlowUp();
@@ -39,6 +38,5 @@ public class Rock : MonoBehaviour {
     if(wall) {
       BlowUp();
     }
-    */
   }
 }

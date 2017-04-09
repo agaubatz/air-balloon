@@ -113,7 +113,7 @@ public class Player : MonoBehaviour {
 		var rock = collision.gameObject.GetComponent<Rock>();
 		if(rock != null) {
 			Flip();
-			//rock.BlowUp();
+			rock.BlowUp();
 		}
 	}
 
@@ -130,9 +130,7 @@ public class Player : MonoBehaviour {
 	public void Flip() {
 		Animator anim = GetComponentInChildren<Animator>();
 
-		var rotationAngle = GetComponentInChildren<PhysicalBoat>().transform.rotation.eulerAngles.z;
-		if (rotationAngle < 10f || rotationAngle > 350f) { //fully rotated
-			Debug.Log(rotationAngle);
+		if (anim) {
 			anim.SetTrigger("Flip");
 		}
 		
