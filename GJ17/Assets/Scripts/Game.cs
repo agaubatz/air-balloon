@@ -11,7 +11,7 @@ public class Game : MonoBehaviour {
 	private bool _gameStarted = false;
 	private bool _gameOver = false;
 
-	private float _scoreTimer = 60f;
+	private float _scoreTimer = 10f;
 	private float _totalTime = 1f; //Start at 1 for rounding
 
 	private List<GameObject> objectsToDeleteWhenOffscreen = new List<GameObject>();
@@ -87,7 +87,6 @@ public class Game : MonoBehaviour {
 			gameInstructions.enabled = false;
 			totalTimeText.enabled = true;
 			timeRemainingText.enabled = true;
-			highScore.enabled = true;
 			_gameStarted = true;
 			boat.Show();
 		}
@@ -116,6 +115,7 @@ public class Game : MonoBehaviour {
 		_gameOver = true;
 		totalTimeText.enabled = false;
 		timeRemainingText.enabled = false;
+		highScore.enabled = true;
 		gameOverText.enabled = true;
 		gameOverTimeText.text = "Total Seconds: " + (int)_totalTime;
 		gameOverTimeText.enabled = true;
