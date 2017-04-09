@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4069406332810050}
   - component: {fileID: 108812943870112202}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114311625406300310}
   - component: {fileID: 50435444671933384}
   - component: {fileID: 60567332081209106}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
