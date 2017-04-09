@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4435025608368226}
   - component: {fileID: 212745973900183992}
   - component: {fileID: 114846082249953376}
-  - component: {fileID: 61565697597657314}
+  - component: {fileID: 58406799102025982}
   m_Layer: 0
   m_Name: bird
   m_TagString: Untagged
@@ -42,8 +42,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61565697597657314
-BoxCollider2D:
+--- !u!58 &58406799102025982
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -55,18 +55,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.35, y: 1.35}
-    newSize: {x: 6, y: 6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.35, y: 1.35}
-  m_EdgeRadius: 0
+  m_Radius: 0.425
 --- !u!114 &114846082249953376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,7 +99,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1278498683
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 721d3395f881f428e971f7b8c8005943, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

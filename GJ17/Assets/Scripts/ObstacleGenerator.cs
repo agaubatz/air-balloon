@@ -60,9 +60,7 @@ public class ObstacleGenerator : MonoBehaviour {
 				_lastObstacleCreatedAt = sellingPosition.y;
 				_nextObstacleHeight = _lastObstacleCreatedAt + ObstacleSpacing + Random.value * ObstacleSpacing + InitialObstacleHeight;
 
-				//TODO: make them less frequent as the game goes on, probably
-				//TODO: add some randomness in how often they occur
-				_obstaclesUntilStation = InitialObstaclesUntilStation;
+				_obstaclesUntilStation = (int)Mathf.Min((Random.value * (InitialObstaclesUntilStation + (Time.realtimeSinceStartup / 15f))) + 1, 20);
 			} else {
 				float side = (Random.value > .5) ? -1f : 1f;
 

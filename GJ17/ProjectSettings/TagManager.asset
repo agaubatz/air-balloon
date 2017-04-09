@@ -53,6 +53,9 @@ TagManager:
   - name: ForegroundUI
     uniqueID: 2643061341
     locked: 0
+  - name: Gems
+    uniqueID: 407000031
+    locked: 0
   - name: Player
     uniqueID: 2280276993
     locked: 0

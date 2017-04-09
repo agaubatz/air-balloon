@@ -56,4 +56,4 @@ MonoBehaviour:
   CreateAheadDistance: 20
   LeftWall: {fileID: 0}
   RightWall: {fileID: 0}
-  InitialObstaclesUntilStation: 3
+  InitialObstaclesUntilStation: 4
