@@ -48,6 +48,7 @@ public class Game : MonoBehaviour {
 	}
 
 	public void GameOver() {
+		Debug.Log("GAME OVER");
 		Application.Quit();
 	}
 

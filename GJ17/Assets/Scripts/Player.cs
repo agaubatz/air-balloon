@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public Vector3 DefaultVelocity;
-	public int Health = 10;
+	private Vector3 OppositeVelocity;
+	private Vector3 GoalVelocity;
+	public int Health = 3;
 	private float VerticalMovementSpeed = 2.5f;
 	private float HorizontalMovementSpeed = 10f;
 	private float HorizontalAcceleration = 2f;
@@ -14,6 +16,8 @@ public class Player : MonoBehaviour {
 	private float RotationSpeed = 4f;
 	private float RotationCorrectionSpeed = 10f;
 	private bool docked = false;
+	private bool colliding = false;
+	private float timeSinceLastCollision = 5f;
 	public LayerMask CollisionMask;
 
 	private Bounds _bounds;
@@ -26,6 +30,8 @@ public class Player : MonoBehaviour {
 		_boxCollider = GetComponent<BoxCollider2D>();
 		_bounds = _boxCollider.bounds;
 		DefaultVelocity = new Vector3(0, VerticalMovementSpeed, 0);
+		GoalVelocity = DefaultVelocity;
+		OppositeVelocity = new Vector3(0, -VerticalMovementSpeed, 0);
 	}
 	
 	// Update is called once per frame
@@ -51,18 +57,31 @@ public class Player : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(0, Vector3.forward), RotationCorrectionSpeed*Time.deltaTime);
 		}
 
-		TryToMove(inputVector * Time.deltaTime);
+		TryToMove(inputVector * Time.deltaTime, inputVector * Time.deltaTime);
+
+		timeSinceLastCollision += Time.deltaTime;
+		if(colliding || timeSinceLastCollision < .5f) {
+			DefaultVelocity = Vector3.MoveTowards(DefaultVelocity, OppositeVelocity, 10f*Time.deltaTime);
+		} else {
+			DefaultVelocity = Vector3.MoveTowards(DefaultVelocity, GoalVelocity, 10f*Time.deltaTime);
+		}
 
 		if (!docked)
-			TryToMove(DefaultVelocity * Time.deltaTime);
+			TryToMove(DefaultVelocity * Time.deltaTime, DefaultVelocity * Time.deltaTime);
 
 		previousInputVector = inputVector;
 	}
 
-	public void TryToMove(Vector3 amount, int attempts = 0)
+	public void TryToMove(Vector3 initialAmount, Vector3 amount, int attempts = 0)
 	{
-		if (attempts >= _maxCollisionAttempts)
+		if (attempts >= _maxCollisionAttempts) {
+			if(!colliding && Mathf.Abs(initialAmount.x) < 0.001f) {
+				DefaultVelocity = Vector3.zero;
+				timeSinceLastCollision = 0f;
+				colliding = true;
+			}
 			return;
+		}
 
 		Vector3 newPos = transform.position + amount;
 		Vector2 newPos2D = Util.Make2D(newPos + Vector3.Scale(new Vector3(_boxCollider.offset.x, _boxCollider.offset.y, 0), transform.lossyScale));
@@ -70,11 +89,12 @@ public class Player : MonoBehaviour {
 		if (!Physics2D.OverlapArea(newPos2D - Util.Make2D(_bounds.extents), newPos2D + Util.Make2D(_bounds.extents), CollisionMask))
 		{
 			transform.position = newPos;
+			colliding = false;
 		}
 		else
 		{
 			attempts++;
-			TryToMove(amount - (amount / _maxCollisionAttempts) * attempts, attempts);
+			TryToMove(initialAmount, amount - (amount / _maxCollisionAttempts) * attempts, attempts);
 		}
 	}
 
@@ -86,16 +106,8 @@ public class Player : MonoBehaviour {
 		
 		var rock = collision.gameObject.GetComponent<Rock>();
 		if(rock != null) {
-			TakeDamage();
+			//Something something flip you over here
 			rock.BlowUp();
-		}
-	}
-
-	void TakeDamage() {
-		Debug.Log("OW");
-		Health--;
-		if(Health == 0) {
-			Game.Instance.GameOver();
 		}
 	}
 
