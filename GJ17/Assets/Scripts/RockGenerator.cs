@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RockGenerator : MonoBehaviour {
-  public float MinTimeBetweenRocks = 1f;
-  public float MaxTimeBetweenRocks = 5f;
+  public float MinTimeBetweenRocks = 0.25f;
+  public float MaxTimeBetweenRocks = 2.25f;
   private float _timeToNextRock;
   public Wall LeftWall;
   public Wall RightWall;
@@ -36,7 +36,7 @@ public class RockGenerator : MonoBehaviour {
   private void SetNextRockTime() {
     if(Game.Instance.TimeSinceGameStart() < 5f) { //First 5 seconds
       _timeToNextRock = 5f;
-    } else if(Game.Instance.TimeSinceGameStart() < 245f) { //Next 4 minutes
+    } else if(Game.Instance.TimeSinceGameStart() < 125f) { //Next 2 minutes
       _timeToNextRock = Random.Range(MinTimeBetweenRocks, MaxTimeBetweenRocks - (Game.Instance.TimeSinceGameStart() - 5f)/60f);
     } else {
       _timeToNextRock = MinTimeBetweenRocks;

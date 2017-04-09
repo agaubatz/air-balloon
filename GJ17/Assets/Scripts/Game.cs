@@ -59,8 +59,8 @@ public class Game : MonoBehaviour {
 			_totalTime += Time.deltaTime;
 			_scoreTimer -= Time.deltaTime;
 
-			totalTimeText.text = "Total Time: " + (int)_totalTime;
-			timeRemainingText.text = "Time Remaining: " + (int)_scoreTimer;
+			totalTimeText.text = "Total Seconds: " + (int)_totalTime;
+			timeRemainingText.text = "Seconds Remaining: " + (int)_scoreTimer;
 
 			if(_scoreTimer < 0f) {
 				_scoreTimer = 0;
@@ -100,7 +100,7 @@ public class Game : MonoBehaviour {
 		totalTimeText.enabled = false;
 		timeRemainingText.enabled = false;
 		gameOverText.enabled = true;
-		gameOverTimeText.text = "Total Time: " + (int)_totalTime;
+		gameOverTimeText.text = "Total Seconds: " + (int)_totalTime;
 		gameOverTimeText.enabled = true;
 		gameOverInstructionsText.enabled = true;
 	}
