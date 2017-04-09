@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour {
 	public static Game Instance { get; private set; }
+	private float _highScore;
 
 	private bool _gameStarted = false;
 	private bool _gameOver = false;
@@ -28,6 +29,7 @@ public class Game : MonoBehaviour {
 	public Text gameOverInstructionsText;
 	public Text gameTitle;
 	public Text gameInstructions;
+	public Text highScore;
 
 	// Use this for initialization
 	void Awake () {
@@ -39,6 +41,9 @@ public class Game : MonoBehaviour {
 		gameOverText.enabled = false;
 		gameOverTimeText.enabled = false;
 		gameOverInstructionsText.enabled = false;
+		highScore.enabled = false;
+		_highScore = PlayerPrefs.GetFloat("highScore", 0f);
+		highScore.text = "High Score: " + (int)_highScore;
 	}
 	
 	// Update is called once per frame
@@ -58,6 +63,11 @@ public class Game : MonoBehaviour {
 		if(!boat.IsDocked() && IsGameGoing()) {
 			_totalTime += Time.deltaTime;
 			_scoreTimer -= Time.deltaTime;
+			if(_totalTime > _highScore) {
+				_highScore = _totalTime;
+				highScore.text = "High Score: " + (int)_highScore;
+				PlayerPrefs.SetFloat("highScore", _highScore);
+			}
 
 			totalTimeText.text = "Total Seconds: " + (int)_totalTime;
 			timeRemainingText.text = "Seconds Remaining: " + (int)_scoreTimer;
@@ -73,6 +83,7 @@ public class Game : MonoBehaviour {
 			gameInstructions.enabled = false;
 			totalTimeText.enabled = true;
 			timeRemainingText.enabled = true;
+			highScore.enabled = true;
 			_gameStarted = true;
 			boat.Show();
 		}
