@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour {
 	public static Game Instance { get; private set; }
 
 	public bool GameOver = false;
 
-	private float _scoreTimer = 120f;
+	private float _scoreTimer = 10f;
 	private float _totalTime = 0f;
 
 	private List<GameObject> objectsToDeleteWhenOffscreen = new List<GameObject>();
@@ -58,6 +59,10 @@ public class Game : MonoBehaviour {
 				_scoreTimer = 0;
 				EndGame();
 			}
+		}
+
+		if(GameOver && Input.GetKey(KeyCode.Space)) {
+			SceneManager.LoadScene("MainScene");
 		}
 
 		toRemove.Clear();

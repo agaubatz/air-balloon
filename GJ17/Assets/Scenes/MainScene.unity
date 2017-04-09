@@ -398,6 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f610246b24f4faaa421c435e7560f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameOver: 0
   toRemove: []
   BallPrefab: {fileID: 1091589249250934, guid: 0a12b5a0c3adb40da90dea3712d49976, type: 2}
   ObstaclePrefab: {fileID: 1262528418991190, guid: 91dd533959b0d4f09aa99074eaf956db,
@@ -893,42 +894,33 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4556663443918816, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
+    - target: {fileID: 4259288483126728, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4556663443918816, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
+    - target: {fileID: 4259288483126728, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4556663443918816, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
+    - target: {fileID: 4259288483126728, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4556663443918816, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
+    - target: {fileID: 4259288483126728, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4556663443918816, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
+    - target: {fileID: 4259288483126728, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4556663443918816, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
+    - target: {fileID: 4259288483126728, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4556663443918816, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
+    - target: {fileID: 4259288483126728, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4556663443918816, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114661305834912136, guid: 97fef9360f01f4d0a9e769537b124dca,
-        type: 2}
-      propertyPath: Health
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4259288483126728, guid: 97fef9360f01f4d0a9e769537b124dca, type: 2}
       propertyPath: m_RootOrder
