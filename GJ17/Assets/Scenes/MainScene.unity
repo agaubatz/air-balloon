@@ -160,31 +160,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 321873414}
   m_Script: {fileID: 11500000, guid: 0642c43aab7e349b4be31ce6c712d0f4, type: 3}
---- !u!1 &546771606 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1312589587515504, guid: 97fef9360f01f4d0a9e769537b124dca,
-    type: 2}
-  m_PrefabInternal: {fileID: 1552072098}
---- !u!50 &546771611
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 546771606}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1001 &754607224
 Prefab:
   m_ObjectHideFlags: 0
@@ -198,7 +173,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4435025608368226, guid: 41a7043617a684bfc9fb3c7cc8d239eb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.5674164
+      value: -5.05
       objectReference: {fileID: 0}
     - target: {fileID: 4435025608368226, guid: 41a7043617a684bfc9fb3c7cc8d239eb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -440,7 +415,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 807bc7476cbc745cc82884f325d814cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

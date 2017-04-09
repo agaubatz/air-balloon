@@ -15,9 +15,9 @@ public class Bucket : MonoBehaviour {
 		
 	}
 
-  void OnTriggerEnter2D(Collider2D collider) {
+  void OnTriggerStay2D(Collider2D collider) {
     var ball = collider.gameObject.GetComponent<Ball>();
-    if(ball && !ball.IsBeingCarried) {
+   	if(ball && !ball.IsBeingCarried && !ball.IsSold) {
       Game.Instance.AddScore(sellingStation.GetPrice(ball.GetColor()));
       ball.MarkSold();
     }
