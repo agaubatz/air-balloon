@@ -13,15 +13,6 @@ public class SellingStation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-    Vector3 bucketPosition = transform.position;
-    bucketPosition.y += 1f;
-		if(bucketPosition.x > 0) {
-      bucketPosition.x -= 2f;
-    } else {
-      bucketPosition.x += 2f;
-    }
-    Instantiate(BucketPrefab, bucketPosition, Quaternion.identity, transform);
-
     foreach(string color in colorList) {
       int price = (int)((Random.value * 500));
       price -= price%10;

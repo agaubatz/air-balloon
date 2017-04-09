@@ -9,6 +9,7 @@ public class Obstacle : MonoBehaviour {
 	private SpriteRenderer _sprite;
 	private Collider2D _collider;
 	private bool _flipX;
+	private bool _dontSpawnBalls;
 
 	// Use this for initialization
 	void Awake () {
@@ -18,9 +19,8 @@ public class Obstacle : MonoBehaviour {
 
 	void Start() {
 		int numBalls = Random.Range(0, 4);
-		if(transform.parent.GetComponent<SellingStation>() != null) {
+		if (_dontSpawnBalls)
 			numBalls = 0;
-		}
 
 		float width = _sprite.bounds.size.x;
 		float ballMinSpacing = width / (numBalls * 4);
@@ -48,5 +48,10 @@ public class Obstacle : MonoBehaviour {
 		_flipX = flipX;
 		_sprite.size = new Vector2(MinSize + proportion * (MaxSize - MinSize), _sprite.size.y);
 		transform.localScale = flipX ? new Vector3(-1.0f, 1, 1) : Vector3.one;
+	}
+
+	public void DontSpawnBalls()
+	{
+		_dontSpawnBalls = true;
 	}
 }
