@@ -25,10 +25,10 @@ public class Obstacle : MonoBehaviour {
 			numBalls = 0;
 
 		float width = _sprite.bounds.size.x;
-		float ballMinSpacing = width / (numBalls * 4);
-		float ballMaxSpacing = width / (numBalls * 2);
+		float ballMinSpacing = width / (numBalls * 5);
+		float ballMaxSpacing = width / (numBalls * 3);
 
-		Vector3 offset = Vector3.zero;
+		Vector3 offset = new Vector3(ballMaxSpacing, 0, 0);
 		for (int i = 0; i < numBalls; i++)
 		{
 			offset = new Vector3(offset.x + ballMinSpacing + ballMaxSpacing * Random.value, 0, 0);

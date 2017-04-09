@@ -122,6 +122,8 @@ public class Ball : MonoBehaviour {
   {
     if (IsSold)
       return;
+    if (IsBeingCarried)
+      return;
     if (transform.parent == null)
       transform.parent = other;
     _attached = other;
