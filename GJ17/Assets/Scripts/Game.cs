@@ -11,6 +11,7 @@ public class Game : MonoBehaviour {
 	public GameObject ObstaclePrefab;
 	public GameObject SellingStationPrefab;
 	public Player boat;
+	public BallColors ballColors = new BallColors();
 
 	// Use this for initialization
 	void Awake () {

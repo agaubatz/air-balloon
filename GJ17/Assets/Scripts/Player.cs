@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public Vector3 DefaultVelocity;
-	private float VerticalMovementSpeed = 2.5f*5f;
+	private float VerticalMovementSpeed = 2.5f;
 	private float HorizontalMovementSpeed = 10f;
 	private float HorizontalAcceleration = 2f;
 	private float HorizontalDeceleration = 2f;

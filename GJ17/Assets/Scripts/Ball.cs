@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,11 +16,17 @@ public class Ball : MonoBehaviour {
 
   private Transform _attached;
   private Vector3 _lastAttachmentPosition;
+  private string _color;
 
 	// Use this for initialization
 	void Awake () {
 		rb = GetComponent<Rigidbody2D>();
     _collider = GetComponent<Collider2D>();
+    
+    _color = Game.Instance.ballColors.GetRandomColor();
+    Debug.Log(_color);
+    SpriteRenderer r = GetComponent<SpriteRenderer>();
+    r.color = Game.Instance.ballColors.ColorMap[_color];
 	}
 	
 	// Update is called once per frame
