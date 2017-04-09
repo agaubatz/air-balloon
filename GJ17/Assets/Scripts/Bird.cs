@@ -19,7 +19,7 @@ public class Bird : MonoBehaviour {
     mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
     transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
     if(ball) {
-      if(!Input.GetMouseButton(0)) { //Drop the ball
+      if(!Input.GetMouseButton(0) || ball.IsSold) { //Drop the ball
         Vector2 nextFrame = Vector2.Lerp(ball.transform.position, mousePosition, moveSpeed);
         nextFrame -= Util.Make2D(ball.transform.position);
         ball.DroppedByBird(nextFrame);
@@ -33,7 +33,7 @@ public class Bird : MonoBehaviour {
   void OnTriggerStay2D(Collider2D collider) {
     if(Input.GetMouseButton(0) && !ball) { //Left click, check for a ball if you don't have one already
       ball = collider.gameObject.GetComponent<Ball>();
-      if(ball) {
+      if(ball && !ball.IsSold) {
         ballPositionOffset = Util.Make2D(ball.transform.position - transform.position);
         ball.PickedUpByBird();
       }

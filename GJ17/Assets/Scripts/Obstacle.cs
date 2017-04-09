@@ -20,7 +20,7 @@ public class Obstacle : MonoBehaviour {
 	}
 
 	void Start() {
-		int numBalls = Random.Range(0, 4);
+		int numBalls = Random.Range(1, 4);
 		if (_dontSpawnBalls)
 			numBalls = 0;
 

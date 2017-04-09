@@ -33,8 +33,6 @@ public class Player : MonoBehaviour {
 		if(docked) {
 			if(Input.GetKey(KeyCode.Space)) {
 				docked = false;
-			} else {
-				return;
 			}
 		}
 
@@ -54,7 +52,8 @@ public class Player : MonoBehaviour {
 
 		TryToMove(inputVector * Time.deltaTime);
 
-		TryToMove(DefaultVelocity * Time.deltaTime);
+		if (!docked)
+			TryToMove(DefaultVelocity * Time.deltaTime);
 
 		previousInputVector = inputVector;
 	}

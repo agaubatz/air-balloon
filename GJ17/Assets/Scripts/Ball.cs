@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +13,9 @@ public class Ball : MonoBehaviour {
   public Sprite GreenSprite;
   public Sprite PurpleSprite;
   public Sprite BlueSprite;
+
+  public bool IsSold { get; private set;}
+  public bool IsBeingCarried { get; private set; }
 
   private Rigidbody2D rb;
   private Collider2D _collider;
@@ -65,18 +68,20 @@ public class Ball : MonoBehaviour {
       _lastAttachmentPosition = _attached.position;
 
       if(transform.position.y + 10 < _attached.position.y) {
-        transform.parent = null;
-        _attached = null;
+        Detach();
       }
      }
 	}
 
   public void PickedUpByBird() {
     rb.isKinematic = true;
+    IsBeingCarried = true;
+    Detach();
   }
 
   public void DroppedByBird(Vector2 velocity) {
     rb.isKinematic = false;
+    IsBeingCarried = false;
     //rb.AddForce(velocity, ForceMode2D.Impulse);
   }
 
@@ -115,6 +120,8 @@ public class Ball : MonoBehaviour {
 
   public void AttachTo(Transform other)
   {
+    if (IsSold)
+      return;
     if (transform.parent == null)
       transform.parent = other;
     _attached = other;
@@ -132,5 +139,25 @@ public class Ball : MonoBehaviour {
     if (_attached == null)
       return;
     ball.AttachTo(_attached);
+  }
+
+  public void MarkSold() {
+    IsSold = true;
+    Detach();
+
+    StartCoroutine(SellCoroutine());
+  }
+
+  void Detach()
+  {
+    transform.parent = null;
+    _attached = null;
+  }
+
+  IEnumerator SellCoroutine() {
+    yield return new WaitForSeconds(2.0f);
+
+    Game.Instance.toRemove.Add(gameObject);
+
   }
 }
