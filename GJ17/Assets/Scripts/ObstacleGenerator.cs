@@ -6,17 +6,19 @@ public class ObstacleGenerator : MonoBehaviour {
 	public float InitialObstacleHeight = 20f;
 	public float ObstacleSpacing = 5f;
 	public float CreateAheadDistance = 20f;
-	public GameObject ObstaclePrefab;
 	public Wall LeftWall;
 	public Wall RightWall;
+	public int InitialObstaclesUntilStation;
 
-	private List<Obstacle> _obstacles = new List<Obstacle>();
+	//private List<Obstacle> _obstacles = new List<Obstacle>();
 	private float _lastObstacleCreatedAt;
 	private float _nextObstacleHeight;
+	private int _obstaclesUntilStation;
 
 	// Use this for initialization
 	void Start () {
 		_nextObstacleHeight = InitialObstacleHeight;
+		_obstaclesUntilStation = InitialObstaclesUntilStation;
 	}
 	
 	// Update is called once per frame
@@ -28,22 +30,52 @@ public class ObstacleGenerator : MonoBehaviour {
 	}
 
 	void GenerateObstaclesUpTo(float height) {
-		if (_nextObstacleHeight > height)
+		if (_nextObstacleHeight > height) {
 			return;
+		}
 
-		float side = (Random.value > .5) ? -1f : 1f;
+		if(_obstaclesUntilStation == 0) {
+				Vector3 sellingPosition = new Vector3(0, _nextObstacleHeight, 0);
+				sellingPosition.x = Random.Range(LeftWall.GetObstacleX(), RightWall.GetObstacleX());
+				var proportion = (sellingPosition.x -LeftWall.GetObstacleX())/(RightWall.GetObstacleX() - LeftWall.GetObstacleX());
 
-		Vector3 obstaclePosition = new Vector3(0, _nextObstacleHeight, 0);
-		obstaclePosition.x = (side == -1) ? LeftWall.GetObstacleX() : RightWall.GetObstacleX();
+				var newSellingStation = Game.Instance.CreateSellingStation(sellingPosition, transform);
 
-		var newObstacle = Instantiate(ObstaclePrefab, obstaclePosition, Quaternion.identity, transform).GetComponent<Obstacle>();
+				//Generate obstacles on either side of the selling station
+				Vector3 leftObstaclePosition = sellingPosition;
+				Vector3 rightObstaclePosition = sellingPosition;
+				leftObstaclePosition.x = LeftWall.GetObstacleX();
+				rightObstaclePosition.x = RightWall.GetObstacleX();
+				var leftObstacle = Game.Instance.CreateObstacle(leftObstaclePosition, transform);
+				var rightObstacle = Game.Instance.CreateObstacle(rightObstaclePosition, transform);
 
-		newObstacle.SetSize(Random.value, side == 1);
-		_obstacles.Add(newObstacle);
+				Debug.Log(proportion);
+				leftObstacle.SetSize(proportion, false);
+				rightObstacle.SetSize(1f-proportion, true);
 
-		_lastObstacleCreatedAt = obstaclePosition.y;
-		_nextObstacleHeight = _lastObstacleCreatedAt + ObstacleSpacing + Random.value * ObstacleSpacing;
+				_lastObstacleCreatedAt = sellingPosition.y;
+				_nextObstacleHeight = _lastObstacleCreatedAt + ObstacleSpacing + Random.value * ObstacleSpacing;
+
+				//TODO: make them less frequent as the game goes on, probably
+				//TODO: add some randomness in how often they occur
+				_obstaclesUntilStation = InitialObstaclesUntilStation;
+			} else {
+				float side = (Random.value > .5) ? -1f : 1f;
+
+				Vector3 obstaclePosition = new Vector3(0, _nextObstacleHeight, 0);
+				obstaclePosition.x = (side == -1) ? LeftWall.GetObstacleX() : RightWall.GetObstacleX();
+
+				var newObstacle = Game.Instance.CreateObstacle(obstaclePosition, transform);
+
+				newObstacle.SetSize(Random.value, side == 1);
+
+				_lastObstacleCreatedAt = obstaclePosition.y;
+				_nextObstacleHeight = _lastObstacleCreatedAt + ObstacleSpacing + Random.value * ObstacleSpacing;
+				
+				//Debug.Break();
+				_obstaclesUntilStation--;
+			}
+
 		
-		//Debug.Break();
 	}
 }

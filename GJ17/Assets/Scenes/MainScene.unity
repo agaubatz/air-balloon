@@ -311,6 +311,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallPrefab: {fileID: 1091589249250934, guid: 0a12b5a0c3adb40da90dea3712d49976, type: 2}
+  ObstaclePrefab: {fileID: 1262528418991190, guid: 91dd533959b0d4f09aa99074eaf956db,
+    type: 2}
+  SellingStationPrefab: {fileID: 1894374356251702, guid: e73520f7e3fb045928faa96b64b5dc95,
+    type: 2}
   boat: {fileID: 1562851112}
 --- !u!4 &894727898
 Transform:
@@ -704,6 +708,11 @@ Prefab:
       propertyPath: RightWall
       value: 
       objectReference: {fileID: 1649080461}
+    - target: {fileID: 114551599874796288, guid: 2cb4b49fcd6724c358fd706f2e3fd985,
+        type: 2}
+      propertyPath: InitialObstaclesUntilStation
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cb4b49fcd6724c358fd706f2e3fd985, type: 2}
   m_IsPrefabParent: 0
