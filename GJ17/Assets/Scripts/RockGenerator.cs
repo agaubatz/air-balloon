@@ -18,6 +18,10 @@ public class RockGenerator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+    if(Game.Instance.GameOver) {
+      return;
+    }
+
     if(!Player.IsDocked() && !Generator.GeneratingSellingStationSoon()) {
       _timeToNextRock -= Time.deltaTime;
     }

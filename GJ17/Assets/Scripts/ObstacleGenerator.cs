@@ -23,6 +23,10 @@ public class ObstacleGenerator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Game.Instance.GameOver) {
+			return;
+		}
+
 		var mainCamera = Camera.main;
 
 		float camHeight = mainCamera.transform.position.y;

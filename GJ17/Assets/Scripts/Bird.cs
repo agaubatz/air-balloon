@@ -34,6 +34,10 @@ public class Bird : MonoBehaviour {
 	}
 
   void OnTriggerStay2D(Collider2D collider) {
+    if(Game.Instance.GameOver) {
+      return;
+    }
+
     if(Input.GetMouseButton(0) && !ball) { //Left click, check for a ball if you don't have one already
       ball = collider.gameObject.GetComponent<Ball>();
       if(ball && !ball.IsSold) {

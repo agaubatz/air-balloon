@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour {
 	public static Game Instance { get; private set; }
 
+	public bool GameOver = false;
+
 	private float _scoreTimer = 120f;
 	private float _totalTime = 0f;
 
@@ -19,12 +21,16 @@ public class Game : MonoBehaviour {
 	public Player boat;
 	public Text totalTimeText;
 	public Text timeRemainingText;
+	public Text gameOverText;
+	public Text gameOverTimeText;
 
 	// Use this for initialization
 	void Awake () {
 		Instance = this;
 		//Decide whether we want to hide the cursor?
 		UnityEngine.Cursor.visible = false;
+		gameOverText.enabled = false;
+		gameOverTimeText.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -41,17 +47,17 @@ public class Game : MonoBehaviour {
 			Destroy(obj);
 		}
 
-		if(!boat.IsDocked()) {
+		if(!boat.IsDocked() && !GameOver) {
 			_totalTime += Time.deltaTime;
-		_scoreTimer -= Time.deltaTime;
-		}
+			_scoreTimer -= Time.deltaTime;
 
-		totalTimeText.text = "Total Time: " + (int)_totalTime;
-		timeRemainingText.text = "Time Remaining: " + (int)_scoreTimer;
+			totalTimeText.text = "Total Time: " + (int)_totalTime;
+			timeRemainingText.text = "Time Remaining: " + (int)_scoreTimer;
 
-		if(_scoreTimer < 0f) {
-			_scoreTimer = 0;
-			GameOver();
+			if(_scoreTimer < 0f) {
+				_scoreTimer = 0;
+				EndGame();
+			}
 		}
 
 		toRemove.Clear();
@@ -61,10 +67,13 @@ public class Game : MonoBehaviour {
 		_scoreTimer += score;
 	}
 
-	public void GameOver() {
-		totalTimeText.text = "GAME OVER";
-		timeRemainingText.text = "Game OVER";
-		Application.Quit();
+	public void EndGame() {
+		GameOver = true;
+		totalTimeText.enabled = false;
+		timeRemainingText.enabled = false;
+		gameOverText.enabled = true;
+		gameOverTimeText.text = "Total Time: " + (int)_totalTime;
+		gameOverTimeText.enabled = true;
 	}
 
 	public Ball CreateBall(Vector3 position, Transform parent)

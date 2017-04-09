@@ -37,6 +37,10 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Game.Instance.GameOver) {
+			return;
+		}
+		
 		Vector3 inputVector = Vector3.zero;
 		if(docked) {
 			if(Input.GetKey(KeyCode.Space)) {
