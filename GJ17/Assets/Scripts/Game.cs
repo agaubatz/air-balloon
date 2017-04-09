@@ -11,7 +11,7 @@ public class Game : MonoBehaviour {
 	private bool _gameStarted = false;
 	private bool _gameOver = false;
 
-	private float _scoreTimer = 60f;
+	private float _scoreTimer = 15f;
 	private float _totalTime = 1f; //Start at 1 for rounding
 
 	private List<GameObject> objectsToDeleteWhenOffscreen = new List<GameObject>();
@@ -30,6 +30,7 @@ public class Game : MonoBehaviour {
 	public Text gameTitle;
 	public Text gameInstructions;
 	public Text highScore;
+	public Text bigCountdown;
 
 	// Use this for initialization
 	void Awake () {
@@ -59,6 +60,9 @@ public class Game : MonoBehaviour {
 			objectsToDeleteWhenOffscreen.Remove(obj);
 			Destroy(obj);
 		}
+
+		bigCountdown.gameObject.SetActive(!boat.IsDocked() && IsGameGoing() && _scoreTimer <= 10);
+		bigCountdown.text = ((int)_scoreTimer).ToString();
 
 		if(!boat.IsDocked() && IsGameGoing()) {
 			_totalTime += Time.deltaTime;
