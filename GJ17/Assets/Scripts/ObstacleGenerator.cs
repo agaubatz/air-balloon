@@ -10,10 +10,11 @@ public class ObstacleGenerator : MonoBehaviour {
 	public Wall RightWall;
 	public int InitialObstaclesUntilStation;
 
-	//private List<Obstacle> _obstacles = new List<Obstacle>();
 	private float _lastObstacleCreatedAt;
 	private float _nextObstacleHeight;
 	private int _obstaclesUntilStation;
+
+	private SellingStation _latestSellingStation;
 
 	// Use this for initialization
 	void Start () {
@@ -33,8 +34,11 @@ public class ObstacleGenerator : MonoBehaviour {
 		GenerateObstaclesUpTo(camHeight + CreateAheadDistance);
 	}
 
-	public bool GeneratingSellingStationSoon() {
-		return _obstaclesUntilStation == 0 && _nextObstacleHeight > (Camera.main.transform.position.y + CreateAheadDistance + 1f);
+	public bool GettingToSellingStationSoon() {
+		if(_latestSellingStation == null) {
+			return false;
+		}
+		return Camera.main.transform.position.y + 10f > _latestSellingStation.transform.position.y;
 	}
 
 	void GenerateObstaclesUpTo(float height) {
@@ -47,7 +51,7 @@ public class ObstacleGenerator : MonoBehaviour {
 				sellingPosition.x = Random.Range(LeftWall.GetObstacleX() + Obstacle.MinSize, RightWall.GetObstacleX() - Obstacle.MinSize);
 				var proportion = (sellingPosition.x -LeftWall.GetObstacleX() - Obstacle.MinSize)/(RightWall.GetObstacleX() - LeftWall.GetObstacleX() - 2f*Obstacle.MinSize);
 
-				var newSellingStation = Game.Instance.CreateSellingStation(sellingPosition, transform);
+				_latestSellingStation = Game.Instance.CreateSellingStation(sellingPosition, transform);
 
 				//Generate obstacles on either side of the selling station
 				Vector3 leftObstaclePosition = sellingPosition;

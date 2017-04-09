@@ -22,7 +22,7 @@ public class RockGenerator : MonoBehaviour {
       return;
     }
 
-    if(!Player.IsDocked() && !Generator.GeneratingSellingStationSoon()) {
+    if(!Player.IsDocked() && !Generator.GettingToSellingStationSoon()) {
       _timeToNextRock -= Time.deltaTime;
     }
     if(_timeToNextRock <= 0f) {
@@ -41,6 +41,5 @@ public class RockGenerator : MonoBehaviour {
     } else {
       _timeToNextRock = MinTimeBetweenRocks;
     }
-    Debug.Log(_timeToNextRock);
   }
 }

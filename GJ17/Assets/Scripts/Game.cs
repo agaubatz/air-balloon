@@ -94,6 +94,7 @@ public class Game : MonoBehaviour {
 
 	public void AddScore(int score) {
 		_scoreTimer += score;
+		timeRemainingText.text = "Seconds Remaining: " + (int)_scoreTimer;
 	}
 
 	public void EndGame() {
