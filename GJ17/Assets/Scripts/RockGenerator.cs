@@ -18,7 +18,7 @@ public class RockGenerator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-    if(Game.Instance.GameOver) {
+    if(!Game.Instance.IsGameGoing()) {
       return;
     }
 
@@ -34,10 +34,10 @@ public class RockGenerator : MonoBehaviour {
 	}
 
   private void SetNextRockTime() {
-    if(Time.realtimeSinceStartup < 5f) { //First 5 seconds
+    if(Game.Instance.TimeSinceGameStart() < 5f) { //First 5 seconds
       _timeToNextRock = 5f;
-    } else if(Time.realtimeSinceStartup < 245f) { //Next 4 minutes
-      _timeToNextRock = Random.Range(MinTimeBetweenRocks, MaxTimeBetweenRocks - (Time.realtimeSinceStartup - 5f)/60f);
+    } else if(Game.Instance.TimeSinceGameStart() < 245f) { //Next 4 minutes
+      _timeToNextRock = Random.Range(MinTimeBetweenRocks, MaxTimeBetweenRocks - (Game.Instance.TimeSinceGameStart() - 5f)/60f);
     } else {
       _timeToNextRock = MinTimeBetweenRocks;
     }

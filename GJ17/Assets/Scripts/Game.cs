@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class Game : MonoBehaviour {
 	public static Game Instance { get; private set; }
 
-	public bool GameOver = false;
+	private bool _gameStarted = false;
+	private bool _gameOver = false;
 
-	private float _scoreTimer = 10f;
+	private float _scoreTimer = 60f;
 	private float _totalTime = 0f;
 
 	private List<GameObject> objectsToDeleteWhenOffscreen = new List<GameObject>();
@@ -25,12 +26,16 @@ public class Game : MonoBehaviour {
 	public Text gameOverText;
 	public Text gameOverTimeText;
 	public Text gameOverInstructionsText;
+	public Text gameTitle;
+	public Text gameInstructions;
 
 	// Use this for initialization
 	void Awake () {
 		Instance = this;
 		//Decide whether we want to hide the cursor?
 		UnityEngine.Cursor.visible = false;
+		totalTimeText.enabled = false;
+		timeRemainingText.enabled = false;
 		gameOverText.enabled = false;
 		gameOverTimeText.enabled = false;
 		gameOverInstructionsText.enabled = false;
@@ -50,7 +55,7 @@ public class Game : MonoBehaviour {
 			Destroy(obj);
 		}
 
-		if(!boat.IsDocked() && !GameOver) {
+		if(!boat.IsDocked() && IsGameGoing()) {
 			_totalTime += Time.deltaTime;
 			_scoreTimer -= Time.deltaTime;
 
@@ -63,11 +68,27 @@ public class Game : MonoBehaviour {
 			}
 		}
 
-		if(GameOver && Input.GetKey(KeyCode.Space)) {
+		if(!_gameStarted && Input.GetKey(KeyCode.Space)) {
+			gameTitle.enabled = false;
+			gameInstructions.enabled = false;
+			totalTimeText.enabled = true;
+			timeRemainingText.enabled = true;
+			_gameStarted = true;
+		}
+
+		if(_gameOver && Input.GetKey(KeyCode.Space)) {
 			SceneManager.LoadScene("MainScene");
 		}
 
 		toRemove.Clear();
+	}
+
+	public bool IsGameGoing() {
+		return _gameStarted && !_gameOver;
+	}
+
+	public float TimeSinceGameStart() {
+		return _totalTime;
 	}
 
 	public void AddScore(int score) {
@@ -75,7 +96,7 @@ public class Game : MonoBehaviour {
 	}
 
 	public void EndGame() {
-		GameOver = true;
+		_gameOver = true;
 		totalTimeText.enabled = false;
 		timeRemainingText.enabled = false;
 		gameOverText.enabled = true;

@@ -34,7 +34,7 @@ public class Bird : MonoBehaviour {
 	}
 
   void OnTriggerStay2D(Collider2D collider) {
-    if(Game.Instance.GameOver) {
+    if(!Game.Instance.IsGameGoing()) {
       return;
     }
 
