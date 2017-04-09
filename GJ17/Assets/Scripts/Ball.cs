@@ -121,6 +121,10 @@ public class Ball : MonoBehaviour {
     _lastAttachmentPosition= other.position;
   }
 
+  public string GetColor() {
+    return _myColor;
+  }
+
   void OnCollisionEnter2D(Collision2D collision) {
     var ball = collision.gameObject.GetComponent<Ball>();
     if (ball == null)

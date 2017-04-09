@@ -260,8 +260,6 @@ MonoBehaviour:
     type: 2}
   SellingStationPrefab: {fileID: 1894374356251702, guid: e73520f7e3fb045928faa96b64b5dc95,
     type: 2}
-  BallColorsPrefab: {fileID: 1449524103977472, guid: 6c336c55cab57478099041131b2adba1,
-    type: 2}
   boat: {fileID: 1562851112}
 --- !u!4 &894727898
 Transform:
@@ -591,7 +589,7 @@ Prefab:
     - target: {fileID: 114551599874796288, guid: 2cb4b49fcd6724c358fd706f2e3fd985,
         type: 2}
       propertyPath: InitialObstaclesUntilStation
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cb4b49fcd6724c358fd706f2e3fd985, type: 2}
