@@ -46,8 +46,10 @@ public class ObstacleGenerator : MonoBehaviour {
 				Vector3 rightObstaclePosition = sellingPosition;
 				leftObstaclePosition.x = LeftWall.GetObstacleX();
 				rightObstaclePosition.x = RightWall.GetObstacleX();
-				var leftObstacle = Game.Instance.CreateObstacle(leftObstaclePosition, transform);
-				var rightObstacle = Game.Instance.CreateObstacle(rightObstaclePosition, transform);
+
+				//TODO: there's a good chance this introduced a scale change, but revisit after the art is done.
+				var leftObstacle = Game.Instance.CreateObstacle(leftObstaclePosition, newSellingStation.transform);
+				var rightObstacle = Game.Instance.CreateObstacle(rightObstaclePosition, newSellingStation.transform);
 
 				leftObstacle.SetSize(proportion, false);
 				rightObstacle.SetSize(1f-proportion, true);

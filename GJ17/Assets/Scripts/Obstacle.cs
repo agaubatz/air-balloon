@@ -18,6 +18,9 @@ public class Obstacle : MonoBehaviour {
 
 	void Start() {
 		int numBalls = Random.Range(0, 4);
+		if(transform.parent.GetComponent<SellingStation>() != null) {
+			numBalls = 0;
+		}
 
 		float width = _sprite.bounds.size.x;
 		float ballMinSpacing = width / (numBalls * 4);
