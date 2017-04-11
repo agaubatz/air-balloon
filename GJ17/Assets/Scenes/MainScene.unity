@@ -1287,10 +1287,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings:
-    threshold: 1
+    threshold: 1.25
     softKnee: 0.5
     radius: 2
-    intensity: 2
+    intensity: 1.5
     highQuality: 1
     antiFlicker: 0
     dirtTexture: {fileID: 0}
